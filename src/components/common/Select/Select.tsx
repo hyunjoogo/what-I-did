@@ -2,6 +2,8 @@ import React, { ReactNode, useCallback, useState } from "react";
 import SelectContext from "./SelectContext";
 import styled, { css, CSSProp } from "styled-components";
 import SelectTrigger from "./SelectTrigger";
+import SelectList from "./SelectList";
+import SelectItem from "./SelectItem";
 
 type Props = {
   children: ReactNode;
@@ -63,8 +65,14 @@ const Layout = styled.div<Pick<Props, "$style">>`
   `}
 `;
 
-const StyledLabel = styled.label``;
+const StyledLabel = styled.label`
+  font-size: 2.4rem;
+  font-weight: 300;
 
+  @media screen and (max-width: 768px) {
+    font-size: 2rem;
+  }
+`;
 Select.Trigger = SelectTrigger;
-// Select.List = SelectList;
-// Select.Item = SelectItem;
+Select.List = SelectList;
+Select.Item = SelectItem;

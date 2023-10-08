@@ -23,14 +23,29 @@ const ActionProgress = () => {
           </option>
         ))}
       </select>
-      <Select label="라벨입니다" $style={css``}>
+      <Select
+        label="라벨입니다"
+        $style={css`
+          position: relative;
+        `}
+      >
         <Select.Trigger
           triggerText="행동 시간을 선택해주세요"
           testId="timepercycle"
         />
-        <p>he1</p>
-        <p>he2</p>
-        <p>he3</p>
+        <Select.List
+          $style={css`
+            position: absolute;
+            left: 0;
+            right: 0;
+            z-index: 10;
+          `}
+          onChange={(e) => console.log(e)}
+        >
+          {ACTION_TIME_OPTIONS.map((el, idx) => (
+            <Select.Item key={idx + el} value={el} suffix="분" />
+          ))}
+        </Select.List>
       </Select>
     </section>
   );
