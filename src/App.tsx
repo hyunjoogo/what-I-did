@@ -1,8 +1,13 @@
 import React from "react";
 import "./App.css";
+import ActionProgress from "./pages/ActionProgress";
 
 function App() {
-  return <h1 className="text-3xl font-bold underline">Learn React</h1>;
+  return (
+    <main>
+      <ActionProgress />
+    </main>
+  );
 }
 
 export default App;
