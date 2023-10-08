@@ -6,9 +6,7 @@
     "extends": [
         "eslint:recommended",
         "plugin:@typescript-eslint/recommended",
-        "plugin:react/recommended",
-        "plugin:testing-library/react",
-        "plugin:jest-dom/recommended"
+        "plugin:react/recommended"
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
@@ -17,9 +15,7 @@
     },
     "plugins": [
         "@typescript-eslint",
-        "react",
-        "testing-library",
-        "jest-dom"
+        "react"
     ],
     "rules": {
     }
