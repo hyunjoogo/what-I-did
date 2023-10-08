@@ -1,5 +1,7 @@
 import React from "react";
 import { ACTION_TIME_OPTIONS } from "../types/action";
+import Select from "../components/common/Select/Select";
+import { css } from "styled-components";
 
 const ActionProgress = () => {
   return (
@@ -21,6 +23,15 @@ const ActionProgress = () => {
           </option>
         ))}
       </select>
+      <Select label="라벨입니다" $style={css``}>
+        <Select.Trigger
+          triggerText="행동 시간을 선택해주세요"
+          testId="timepercycle"
+        />
+        <p>he1</p>
+        <p>he2</p>
+        <p>he3</p>
+      </Select>
     </section>
   );
 };
