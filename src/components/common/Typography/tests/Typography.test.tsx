@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import Typography from "./Typography";
+import Typography from "../Typography";
 
 describe("Typography", () => {
   it("랜더링 확인", () => {
