@@ -6,7 +6,7 @@ type Parameters = {
   required?: boolean;
 };
 
-const useQuestionTextarea = ({ minLength, maxLength, required, ...props }: Parameters) => {
+const useQuestionTextarea = ({ minLength, maxLength, required }: Parameters) => {
   const [value, setValue] = useState('');
   const [errorMessage, setErrorMessage] = useState(required ? '* 필수입력' : '');
 

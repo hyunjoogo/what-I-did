@@ -1,3 +1,3 @@
-export const ACTION_TIME_OPTIONS = [
-  20, 25, 30, 35, 40, 45, 50, 55, 60,
-] as const;
+import { ACTION_TIME_OPTIONS } from '../constants/action';
+
+export type ActionTimeOptions = (typeof ACTION_TIME_OPTIONS)[number];

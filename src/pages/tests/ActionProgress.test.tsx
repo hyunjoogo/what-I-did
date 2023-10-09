@@ -1,18 +1,19 @@
-import { render, screen } from "@testing-library/react";
-import ActionProgress from "../ActionProgress";
-import { ACTION_TIME_OPTIONS } from "../../types/action";
-import userEvent from "@testing-library/user-event";
+import { render, screen } from '@testing-library/react';
+import ActionProgress from '../ActionProgress';
 
-describe("", () => {
-  it("행동시간 선택창이 나오는지 확인", async () => {
+import userEvent from '@testing-library/user-event';
+import { ACTION_TIME_OPTIONS } from '../../constants/action';
+
+describe('', () => {
+  it('행동시간 선택창이 나오는지 확인', async () => {
     const user = userEvent.setup();
-    const suffix = "분";
+    const suffix = '분';
 
     render(<ActionProgress />);
 
-    const selectElements = screen.getByTestId("timepercycle");
-    const button = screen.getByRole("button", {
-      name: "행동 시간을 선택해주세요",
+    const selectElements = screen.getByTestId('timepercycle');
+    const button = screen.getByRole('button', {
+      name: '행동 시간을 선택해주세요',
     });
     expect(button).toBeInTheDocument();
 
