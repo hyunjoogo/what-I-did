@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { MouseEventHandler, useCallback, useState } from 'react';
 import { ACTION_TIME_OPTIONS } from '../types/action';
 import Select from '../components/common/Select/Select';
 import { css } from 'styled-components';
@@ -11,6 +11,19 @@ const ActionProgress = () => {
     maxLength: 30,
     required: true,
   });
+
+  const [state, setState] = useState<string | null>(null);
+
+  const onChangeSelectItem: MouseEventHandler<HTMLDivElement> = useCallback(
+    (e) => {
+      if ('dataset' in e.target) {
+        const value = (e.target.dataset as { value: string }).value;
+
+        setState(value);
+      }
+    },
+    [setState],
+  );
 
   return (
     <section className="bg-blue-300 h-[100px]">
@@ -31,7 +44,7 @@ const ActionProgress = () => {
             right: 0;
             z-index: 10;
           `}
-          onChange={(e) => console.log(e)}
+          onChange={onChangeSelectItem}
         >
           {ACTION_TIME_OPTIONS.map((el, idx) => (
             <Select.Item key={idx + el} value={el} suffix="분" />
