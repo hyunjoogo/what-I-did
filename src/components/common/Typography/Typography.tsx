@@ -78,5 +78,9 @@ const StyledTypography = styled.div<Props>`
     font-size: ${fontSize || FONT_STYLE.fontSize[variant]};
     font-weight: ${fontWeight || FONT_STYLE.fontWeight[variant]};
     color: ${color || colorStyle.black};
+
+    ${$style}
   `}
 `;
+
+export default Typography;
