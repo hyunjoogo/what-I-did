@@ -1,5 +1,5 @@
 import styled, { css, CSSProp } from "styled-components";
-import { HTMLAttributes } from "react";
+import React, { HTMLAttributes } from "react";
 import colorStyle from "../../../styles/color";
 
 type Props = {

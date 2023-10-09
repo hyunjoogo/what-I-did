@@ -6,13 +6,13 @@ import Typography from "../Typography/Typography";
 type Props = {
   question: string;
   errorMessage?: string;
-  onClickGuideButton?: () => void;
+  // onClickGuideButton?: () => void;
 } & InputHTMLAttributes<HTMLTextAreaElement>;
 
 const QuestionTextarea = ({
   question,
   errorMessage,
-  onClickGuideButton,
+  // onClickGuideButton,
   ...props
 }: Props) => {
   return (

@@ -2,8 +2,16 @@ import React from "react";
 import { ACTION_TIME_OPTIONS } from "../types/action";
 import Select from "../components/common/Select/Select";
 import { css } from "styled-components";
+import QuestionTextarea from "../components/common/QuestionTextarea/QuestionTextarea";
+import useQuestionTextarea from "../hooks/common/useQuestionTextarea";
 
 const ActionProgress = () => {
+  const { errorMessage, ...etc } = useQuestionTextarea({
+    minLength: 5,
+    maxLength: 30,
+    required: true,
+  });
+
   return (
     <section className="bg-blue-300 h-[100px]">
       <label
@@ -36,6 +44,11 @@ const ActionProgress = () => {
           ))}
         </Select.List>
       </Select>
+      <QuestionTextarea
+        question="무엇을 할 예정인가요?"
+        errorMessage={errorMessage}
+        {...etc}
+      />
     </section>
   );
 };
