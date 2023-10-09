@@ -1,4 +1,4 @@
-import { ChangeEventHandler, useState } from "react";
+import { ChangeEventHandler, useState } from 'react';
 
 type Parameters = {
   minLength?: number;
@@ -6,20 +6,13 @@ type Parameters = {
   required?: boolean;
 };
 
-const useQuestionTextarea = ({
-  minLength,
-  maxLength,
-  required,
-  ...props
-}: Parameters) => {
-  const [value, setValue] = useState("");
-  const [errorMessage, setErrorMessage] = useState(
-    required ? "* 필수입력" : "",
-  );
+const useQuestionTextarea = ({ minLength, maxLength, required, ...props }: Parameters) => {
+  const [value, setValue] = useState('');
+  const [errorMessage, setErrorMessage] = useState(required ? '* 필수입력' : '');
 
   const validateValue = (updatedValue: string) => {
     if (required && updatedValue.length === 0) {
-      setErrorMessage("* 필수입력");
+      setErrorMessage('* 필수입력');
       return;
     }
 
@@ -28,7 +21,7 @@ const useQuestionTextarea = ({
       return;
     }
 
-    setErrorMessage("");
+    setErrorMessage('');
   };
 
   const onChange: ChangeEventHandler<HTMLTextAreaElement> = (event) => {
