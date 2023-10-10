@@ -1,12 +1,16 @@
 import React from 'react';
-import './App.css';
 import CreateAction from './pages/CreateAction';
+import { ThemeProvider } from 'styled-components';
+import { lightTheme } from './styles/theme';
+import GlobalStyles from './styles/globalStyle';
 
 function App() {
   return (
-    <main>
+    <ThemeProvider theme={lightTheme}>
+      <GlobalStyles />
+
       <CreateAction />
-    </main>
+    </ThemeProvider>
   );
 }
 
