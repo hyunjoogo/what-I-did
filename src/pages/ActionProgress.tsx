@@ -7,6 +7,7 @@ import useQuestionTextarea from '../hooks/common/useQuestionTextarea';
 import useSelect from '../hooks/common/useSelect';
 import { ACTION_TIME_OPTIONS } from '../constants/action';
 import { ActionTimeOptions } from '../types/action';
+import Button from '../components/common/Button/Button';
 
 const ActionProgress = () => {
   const { errorMessage, ...etc } = useQuestionTextarea({
@@ -44,6 +45,7 @@ const ActionProgress = () => {
         </Select.List>
       </Select>
       <QuestionTextarea question="무엇을 할 예정인가요?" errorMessage={errorMessage} {...etc} />
+      <Button variant="primary">실행 시작하기</Button>
     </section>
   );
 };
