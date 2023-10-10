@@ -7,7 +7,7 @@ import Button from '../../common/Button/Button';
 import useCreateActionForm from '../hooks/useCreateActionForm';
 
 const CreateActionForm = () => {
-  const { changeDuringTime, questionTextareaProps, submitForm, isDisabled } = useCreateActionForm();
+  const { changeDuringTime, questionTextareaProps, submitForm, isSubmitLoading, isDisabled } = useCreateActionForm();
   const handleClickCreateActionButton = () => {
     submitForm();
   };
