@@ -4,20 +4,12 @@ import Select from '../../common/Select/Select';
 import { ACTION_TIME_OPTIONS } from '../../../constants/action';
 import QuestionTextarea from '../../common/QuestionTextarea/QuestionTextarea';
 import Button from '../../common/Button/Button';
-import useSelect from '../../../hooks/common/useSelect';
-import { ActionTimeOptions } from '../../../types/action';
-import useQuestionTextarea from '../../../hooks/common/useQuestionTextarea';
+import useCreateActionForm from '../hooks/useCreateActionForm';
 
 const CreateActionForm = () => {
-  const { state: duringTime, onChangeSelectItem: setDuringTime } = useSelect<ActionTimeOptions>();
-  const { errorMessage, value, ...etc } = useQuestionTextarea({
-    minLength: 5,
-    maxLength: 30,
-    required: true,
-  });
-
-  const createAction = () => {
-    console.log(duringTime, value);
+  const { changeDuringTime, questionTextareaProps, submitForm, isDisabled } = useCreateActionForm();
+  const handleClickCreateActionButton = () => {
+    submitForm();
   };
 
   return (
@@ -37,16 +29,16 @@ const CreateActionForm = () => {
               right: 0;
               z-index: 10;
             `}
-            onChange={setDuringTime}
+            onChange={changeDuringTime}
           >
             {ACTION_TIME_OPTIONS.map((el, idx) => (
               <Select.Item key={idx + el} value={el} suffix="분" />
             ))}
           </Select.List>
         </Select>
-        <QuestionTextarea question="무엇을 할 예정인가요?" errorMessage={errorMessage} value={value} {...etc} />
+        <QuestionTextarea question="무엇을 할 예정인가요?" {...questionTextareaProps.actionPlan} />
       </Container>
-      <Button variant="primary" onClick={(e) => createAction()}>
+      <Button variant="primary" onClick={handleClickCreateActionButton} disabled={isDisabled()}>
         실행 시작하기
       </Button>
     </Layout>
