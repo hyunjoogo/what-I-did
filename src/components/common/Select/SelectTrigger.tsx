@@ -1,7 +1,8 @@
-import React, { ButtonHTMLAttributes } from "react";
-import { useSelectContext } from "./SelectContext";
-import styled, { css, CSSProp } from "styled-components";
-import color from "../../../styles/color";
+import React, { ButtonHTMLAttributes } from 'react';
+import { useSelectContext } from './SelectContext';
+import styled, { css, CSSProp } from 'styled-components';
+import color from '../../../styles/color';
+import ArrowIcon from '../../../assets/icons/ArrowIcon';
 
 type Props = {
   triggerText?: string;
@@ -10,20 +11,13 @@ type Props = {
   $style?: CSSProp;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
-const SelectTrigger = ({ triggerText = "선택", testId, ...props }: Props) => {
-  const { isOpen, selectedItem, toggleOpen, triggerSuffixText } =
-    useSelectContext();
+const SelectTrigger = ({ triggerText = '선택', testId, ...props }: Props) => {
+  const { isOpen, selectedItem, toggleOpen, triggerSuffixText } = useSelectContext();
 
   return (
-    <Layout
-      {...props}
-      $isOpen={isOpen}
-      onClick={toggleOpen}
-      data-testid={testId}
-    >
-      {selectedItem === null
-        ? triggerText
-        : selectedItem.toString() + triggerSuffixText}
+    <Layout {...props} $isOpen={isOpen} onClick={toggleOpen} data-testid={testId}>
+      {selectedItem === null ? triggerText : selectedItem.toString() + triggerSuffixText}
+      <ArrowIconWrapper>{isOpen ? <ArrowIcon direction="up" /> : <ArrowIcon direction="down" />}</ArrowIconWrapper>
     </Layout>
   );
 };
@@ -44,8 +38,8 @@ const Layout = styled.button<Props & { $isOpen: boolean }>`
 
   ${({ $style, theme, $isOpen }) => css`
     background-color: ${theme.background};
-    border-bottom-right-radius: ${$isOpen ? "none" : "7px"};
-    border-bottom-left-radius: ${$isOpen ? "none" : "7px"};
+    border-bottom-right-radius: ${$isOpen ? 'none' : '7px'};
+    border-bottom-left-radius: ${$isOpen ? 'none' : '7px'};
     ${$style}
   `};
 

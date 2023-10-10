@@ -18,7 +18,7 @@ const ActionProgress = () => {
   const { state: duringTime, onChangeSelectItem: setDuringTime } = useSelect<ActionTimeOptions>();
 
   return (
-    <section className="bg-blue-300 h-[100px]">
+    <section className="">
       <label htmlFor="duringTime" className="block text-sm font-medium leading-6 text-gray-900">
         시간 설정
       </label>
