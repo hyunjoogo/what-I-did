@@ -3,7 +3,7 @@ import styled, { css, CSSProp, RuleSet } from 'styled-components';
 import { Size } from '../../../types/style';
 import color from '../../../styles/color';
 import { SIZE } from '../../../constants/style';
-import CircularProgress from '../../CircularProgress/CircularProgress';
+import CircularProgress from '../CircularProgress/CircularProgress';
 
 type Include<T, U> = T extends U ? T : never;
 

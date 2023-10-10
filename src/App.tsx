@@ -1,11 +1,11 @@
-import React from "react";
-import "./App.css";
-import ActionProgress from "./pages/ActionProgress";
+import React from 'react';
+import './App.css';
+import CreateAction from './pages/CreateAction';
 
 function App() {
   return (
     <main>
-      <ActionProgress />
+      <CreateAction />
     </main>
   );
 }

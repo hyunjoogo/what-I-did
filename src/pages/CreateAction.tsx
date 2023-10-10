@@ -9,14 +9,17 @@ import { ACTION_TIME_OPTIONS } from '../constants/action';
 import { ActionTimeOptions } from '../types/action';
 import Button from '../components/common/Button/Button';
 
-const ActionProgress = () => {
-  const { errorMessage, ...etc } = useQuestionTextarea({
+const CreateAction = () => {
+  const { state: duringTime, onChangeSelectItem: setDuringTime } = useSelect<ActionTimeOptions>();
+  const { errorMessage, value, ...etc } = useQuestionTextarea({
     minLength: 5,
     maxLength: 30,
     required: true,
   });
 
-  const { state: duringTime, onChangeSelectItem: setDuringTime } = useSelect<ActionTimeOptions>();
+  const createAction = () => {
+    console.log(duringTime, value);
+  };
 
   return (
     <section className="">
@@ -44,10 +47,12 @@ const ActionProgress = () => {
           ))}
         </Select.List>
       </Select>
-      <QuestionTextarea question="무엇을 할 예정인가요?" errorMessage={errorMessage} {...etc} />
-      <Button variant="primary">실행 시작하기</Button>
+      <QuestionTextarea question="무엇을 할 예정인가요?" errorMessage={errorMessage} value={value} {...etc} />
+      <Button variant="primary" onClick={(e) => createAction()}>
+        실행 시작하기
+      </Button>
     </section>
   );
 };
 
-export default ActionProgress;
+export default CreateAction;

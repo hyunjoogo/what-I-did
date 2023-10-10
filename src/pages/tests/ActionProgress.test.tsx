@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import ActionProgress from '../ActionProgress';
+import CreateAction from '../CreateAction';
 
 import userEvent from '@testing-library/user-event';
 import { ACTION_TIME_OPTIONS } from '../../constants/action';
@@ -9,7 +9,7 @@ describe('', () => {
     const user = userEvent.setup();
     const suffix = '분';
 
-    render(<ActionProgress />);
+    render(<CreateAction />);
 
     const selectElements = screen.getByTestId('timepercycle');
     const button = screen.getByRole('button', {
