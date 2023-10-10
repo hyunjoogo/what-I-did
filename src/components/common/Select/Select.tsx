@@ -1,9 +1,10 @@
-import React, { ReactNode, useCallback, useState } from "react";
-import SelectContext from "./SelectContext";
-import styled, { css, CSSProp } from "styled-components";
-import SelectTrigger from "./SelectTrigger";
-import SelectList from "./SelectList";
-import SelectItem from "./SelectItem";
+import React, { ReactNode, useCallback, useState } from 'react';
+import SelectContext from './SelectContext';
+import styled, { css, CSSProp } from 'styled-components';
+import SelectTrigger from './SelectTrigger';
+import SelectList from './SelectList';
+import SelectItem from './SelectItem';
+import useOutsideClick from '../../../hooks/common/useOutsideClick';
 
 type Props = {
   children: ReactNode;
@@ -14,9 +15,11 @@ type Props = {
 const Select = ({ children, label, $style }: Props) => {
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [triggerSuffixText, setTriggerSuffixText] = useState<string>("");
+  const [triggerSuffixText, setTriggerSuffixText] = useState<string>('');
 
   const closeSelectItems = () => setIsOpen(false);
+
+  const ref = useOutsideClick<HTMLDivElement>(closeSelectItems);
 
   const changeSelectedItem = useCallback(
     (value: string) => {
@@ -47,7 +50,7 @@ const Select = ({ children, label, $style }: Props) => {
         toggleOpen,
       }}
     >
-      <Layout $style={$style}>
+      <Layout $style={$style} ref={ref}>
         <StyledLabel>{label}</StyledLabel>
         {children}
       </Layout>
@@ -57,7 +60,7 @@ const Select = ({ children, label, $style }: Props) => {
 
 export default Select;
 
-const Layout = styled.div<Pick<Props, "$style">>`
+const Layout = styled.div<Pick<Props, '$style'>>`
   width: 100%;
 
   ${({ $style }) => css`
