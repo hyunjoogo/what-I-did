@@ -1,7 +1,7 @@
-import React, { InputHTMLAttributes } from "react";
-import styled from "styled-components";
-import color from "../../../styles/color";
-import Typography from "../Typography/Typography";
+import React, { InputHTMLAttributes } from 'react';
+import styled from 'styled-components';
+import color from '../../../styles/color';
+import Typography from '../Typography/Typography';
 
 type Props = {
   question: string;
@@ -44,6 +44,11 @@ const Layout = styled.div`
 
   &:focus-within {
     border-color: ${color.blue[500]};
+  }
+
+  @media screen and (max-width: 768px) {
+    padding-left: 20px;
+    padding-right: 20px;
   }
 `;
 const Question = styled.div`

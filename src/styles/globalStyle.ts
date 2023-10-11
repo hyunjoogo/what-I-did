@@ -1,5 +1,6 @@
 import resetStyle from './reset';
 import { createGlobalStyle, css } from 'styled-components';
+import color from './color';
 
 const GlobalStyles = createGlobalStyle`
   ${resetStyle}
@@ -16,6 +17,8 @@ const GlobalStyles = createGlobalStyle`
     ${({ theme }) => css`
       color: ${theme.text};
     `}
+
+    background-color: ${color.neutral[100]};
   }
   `;
 
