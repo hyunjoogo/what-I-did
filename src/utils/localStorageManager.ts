@@ -1,9 +1,9 @@
-import { CurrentAction, EssentialCurrentAction } from '../types/action';
+import { CurrentActionInfo, EssentialCurrentAction } from '../types/action';
 
 const localStorageManager = {
   CURRENT_ACTION: 'currentAction',
   ACTION_PLANS: 'actionPlans',
-  get currentAction(): CurrentAction {
+  get currentAction(): CurrentActionInfo {
     return JSON.parse(localStorage.getItem(this.CURRENT_ACTION)!);
   },
 

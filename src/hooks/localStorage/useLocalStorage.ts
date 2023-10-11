@@ -1,9 +1,17 @@
 import localStorageManager from '../../utils/localStorageManager';
 import { EssentialCurrentAction } from '../../types/action';
+import { ResponseCurrentActionInfo } from '../../types/storage';
 
 const useLocalStorage = () => {
   const getCurrentAction = () => {
-    return localStorageManager.currentAction;
+    return new Promise<ResponseCurrentActionInfo>((resolve, reject) => {
+      try {
+        const data: ResponseCurrentActionInfo = localStorageManager.currentAction;
+        resolve(data);
+      } catch (error) {
+        reject(error);
+      }
+    });
   };
 
   const setCurrentAction = (essentialCurrentAction: EssentialCurrentAction) => {

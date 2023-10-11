@@ -19,6 +19,15 @@ const color = {
     700: '#296166',
     800: '#225054',
   },
+  green: {
+    200: '#80cf80', // Lightest shade
+    300: '#6ec86d',
+    400: '#5bc15b',
+    500: '#49ba49', // Middle shade
+    600: '#41a940',
+    700: '#3a9639',
+    800: '#328432', // Darkest shade
+  },
   neutral: {
     50: '#fafafa',
     100: '#f5f5f5',
