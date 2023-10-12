@@ -2,17 +2,20 @@ import React from 'react';
 import styled from 'styled-components';
 import color from '../../../styles/color';
 import Sidebar from '../Sidebar/Sidebar';
+import InActionForm from '../InActionForm/InActionForm';
 
-const ActionBoard = () => {
+const InActionBoard = () => {
   return (
     <Container>
       <Sidebar />
-      <Contents></Contents>
+      <Contents>
+        <InActionForm />
+      </Contents>
     </Container>
   );
 };
 
-export default ActionBoard;
+export default InActionBoard;
 
 const Container = styled.div`
   width: 100%;

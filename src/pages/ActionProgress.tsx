@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import ActionBoard from '../components/progress/ActionBoard/ActionBoard';
+import InActionBoard from '../components/progress/InActionBoard/InActionBoard';
 import ActionProgressProvider from '../Contexts/ActionProgressProvider';
 
 const ActionProgress = () => {
   return (
     <Layout>
       <ActionProgressProvider>
-        <ActionBoard></ActionBoard>
+        <InActionBoard></InActionBoard>
       </ActionProgressProvider>
     </Layout>
   );
