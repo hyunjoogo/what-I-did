@@ -1,9 +1,10 @@
 import React from 'react';
-import { useCurrentActionInfo } from '../../../Contexts/ActionProgressProvider';
 import Button from '../../common/Button/Button';
 import styled from 'styled-components';
 import QuestionTextarea from '../../common/QuestionTextarea/QuestionTextarea';
 import useInActionForm from '../hooks/useInActionForm';
+import QuestionAnswer from '../../common/QuestionAnswer/QuestionAnswer';
+import color from '../../../styles/color';
 
 const InActionForm = () => {
   const { whatIWill, questionTextareaProps, submitForm, isSubmitLoading } = useInActionForm();
@@ -13,15 +14,7 @@ const InActionForm = () => {
   return (
     <Layout>
       <PlanResultList>
-        {/*{getKeys<Plan>(PLAN_KEYWORDS).map((planKey) => (*/}
-        {/*  <QuestionAnswer*/}
-        {/*    key={planKey}*/}
-        {/*    question={PLAN_KEYWORDS[planKey]}*/}
-        {/*    answer={planList[planKey]}*/}
-        {/*    iconColor={color.red[600]}*/}
-        {/*  />*/}
-        {/*))}*/}
-
+        <QuestionAnswer question="어떤 행동을 할 예정입니까?" answer={whatIWill} iconColor={color.red[600]} />
         <QuestionTextarea question="행동 메모" {...questionTextareaProps.memo} />
       </PlanResultList>
       <Button variant="danger" onClick={submitForm} isLoading={isSubmitLoading}>
