@@ -14,7 +14,10 @@ const InActionForm = () => {
   return (
     <Layout>
       <PlanResultList>
-        <QuestionAnswer question="어떤 행동을 할 예정입니까?" answer={whatIWill} iconColor={color.red[600]} />
+        <QuestionList>
+          <QuestionAnswer question="어떤 행동을 할 예정입니까?" answer={whatIWill} iconColor={color.red[600]} />
+        </QuestionList>
+
         <QuestionTextarea question="행동 메모" {...questionTextareaProps.memo} />
       </PlanResultList>
       <Button variant="danger" onClick={submitForm} isLoading={isSubmitLoading}>
@@ -35,7 +38,7 @@ const Layout = styled.section`
   gap: 30px;
 `;
 
-const PlanResultList = styled.ul`
+const PlanResultList = styled.div`
   width: 100%;
 
   flex: 1;
@@ -45,7 +48,7 @@ const PlanResultList = styled.ul`
   gap: 60px;
 
   padding: 50px;
-  background-color: #fff;
+  background-color: #f5f5f5;
   border-radius: 14px;
 
   overflow-y: auto;
@@ -62,5 +65,17 @@ const PlanResultList = styled.ul`
     p {
       font-size: 1.8rem;
     }
+  }
+`;
+
+const QuestionList = styled.div`
+  background-color: #fff;
+  padding: 16px 30px 10px 30px;
+  border: 1px solid #fff;
+  border-radius: 14px;
+
+  @media screen and (max-width: 768px) {
+    padding-left: 20px;
+    padding-right: 20px;
   }
 `;
