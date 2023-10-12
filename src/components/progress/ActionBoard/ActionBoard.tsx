@@ -7,6 +7,7 @@ const ActionBoard = () => {
   return (
     <Container>
       <Sidebar />
+      <Contents></Contents>
     </Container>
   );
 };

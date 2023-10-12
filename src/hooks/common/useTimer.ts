@@ -1,5 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { useCurrentActionInfo } from '../../Contexts/ActionProgressProvider';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import localStorageManager from '../../utils/localStorageManager';
 
 type Options = {
@@ -38,7 +37,6 @@ const UseTimer = (startTimestamp: number, endTimestamp: number, { onStart, onSto
     if (seconds.current > 0) {
       // const timeDifference = Math.floor((Date.now() - startTime.current) / 1000);
       // const leftSeconds = seconds.current - timeDifference;
-      console.log(new Date(endTime.current).toLocaleString(), endTime.current);
 
       const td = Math.floor((endTime.current - Date.now()) / 1000);
       const leftSeconds = td;
@@ -77,34 +75,34 @@ const UseTimer = (startTimestamp: number, endTimestamp: number, { onStart, onSto
     onStop?.();
   }, [leftSeconds]);
 
-  const reset = useCallback((newSeconds?: number) => {
-    if (newSeconds) {
-      seconds.current = newSeconds;
-    }
-
-    setIsTicking(false);
-    setLeftSeconds(seconds.current);
-  }, []);
+  // const reset = useCallback((newSeconds?: number) => {
+  //   if (newSeconds) {
+  //     seconds.current = newSeconds;
+  //   }
+  //
+  //   setIsTicking(false);
+  //   setLeftSeconds(seconds.current);
+  // }, []);
 
   const restart = useCallback(() => {
     if (!isTicking) {
       localStorageManager.setNewEndTimestampOfCurrentAction(seconds.current);
       const { endTimestamp } = localStorageManager.currentAction;
-      // seconds.current = leftSeconds;
       endTime.current = endTimestamp;
       setIsTicking(true);
-      // 종료시간 변경하기
+
+      // TEST를 위한 코드
+      console.log(`종료 예상 시간 : ${new Date(Date.now() + leftSeconds * 1000).toLocaleString()}`);
+      console.log(`종료 시간 : ${new Date(endTime.current).toLocaleString()}`);
     }
   }, [isTicking, leftSeconds]);
 
   return {
     start,
     stop,
-    reset,
     restart,
     leftSeconds,
     isTicking,
-    timeStrings,
   };
 };
 

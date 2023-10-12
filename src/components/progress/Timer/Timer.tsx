@@ -9,10 +9,9 @@ import format from '../../../utils/format';
 
 const Timer = () => {
   const { startTimestamp, endTimestamp } = useCurrentActionInfo();
-  const { start, stop, reset, leftSeconds, isTicking, timeStrings, restart } = UseTimer(startTimestamp, endTimestamp);
+  const { start, stop, leftSeconds, isTicking, restart } = UseTimer(startTimestamp, endTimestamp);
 
   const formattedTime = format.time(leftSeconds);
-  const test = new Date(Date.now() + leftSeconds * 1000).toLocaleString();
 
   const buttonColor = color.red[600];
   const buttonText = isTicking ? '정지' : '시작';
@@ -21,7 +20,7 @@ const Timer = () => {
   return (
     <Layout>
       <Typography variant="p1" fontSize="3.6rem" color={color.white}>
-        제한 시간
+        남은 시간
       </Typography>
       <Typography
         variant="h1"
@@ -31,13 +30,8 @@ const Timer = () => {
         role="timer"
         aria-label={`남은 시간 ${leftSeconds}`}
       >
-        {`${leftSeconds}  ${formattedTime}`}
+        {`${formattedTime}`}
       </Typography>
-      {`종료예상 시간 : ${test}`}
-      <br />
-      {timeStrings.end}
-      <br />
-      {timeStrings.start}
 
       <Button variant="outlined" size="small" onClick={restart}>
         다시 시작

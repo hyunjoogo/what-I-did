@@ -2,7 +2,6 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import color from '../../../styles/color';
 import { Step } from '../../../types/action';
-import { useCurrentActionInfo } from '../../../Contexts/ActionProgressProvider';
 import Typography from '../../common/Typography/Typography';
 import Timer from '../Timer/Timer';
 
@@ -20,8 +19,6 @@ const SIDEBAR_INFO: Record<Step, { theme: string; stepKeyword: string; paragraph
 };
 
 const Sidebar = () => {
-  const { duringTime } = useCurrentActionInfo();
-
   const paragraph = SIDEBAR_INFO.inAction.paragraph;
   const stepKeyword = SIDEBAR_INFO.inAction.stepKeyword;
 
