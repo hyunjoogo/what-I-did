@@ -20,7 +20,7 @@ export const useCurrentActionInfo = () => {
   const currentActionInfo = useContext(CurrentActionInfoContext);
 
   if (currentActionInfo === null) {
-    throw new Error('스터디 정보를 불러오는 중 문제가 발생했습니다.');
+    throw new Error('행동 정보를 불러오는 중 문제가 발생했습니다.');
   }
 
   return currentActionInfo;

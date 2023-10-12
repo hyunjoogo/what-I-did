@@ -10,7 +10,7 @@ function App() {
     <ThemeProvider theme={lightTheme}>
       <GlobalStyles />
 
-      {/*<CreateAction />*/}
+      <CreateAction />
       <ActionProgress />
     </ThemeProvider>
   );
