@@ -1,6 +1,6 @@
 import localStorageManager from '../../utils/localStorageManager';
 import { EssentialCurrentAction } from '../../types/action';
-import { ResponseCurrentActionInfo } from '../../types/storage';
+import { RequestActionPlans, ResponseActionPlans, ResponseCurrentActionInfo } from '../../types/storage';
 
 const useLocalStorage = () => {
   const getCurrentAction = () => {
@@ -25,7 +25,30 @@ const useLocalStorage = () => {
     });
   };
 
-  return { getCurrentAction, setCurrentAction };
+  const setActionPlans = (memo: RequestActionPlans) => {
+    return new Promise((resolve, reject) => {
+      try {
+        localStorageManager.setActionPlans(memo);
+        resolve(true);
+      } catch (error) {
+        reject(error);
+      }
+    });
+  };
+
+  const getActionPlans = () => {
+    return new Promise<ResponseActionPlans>((resolve, reject) => {
+      try {
+        const data: ResponseActionPlans = localStorageManager.actionPlans;
+        console.log(data);
+        resolve(data);
+      } catch (error) {
+        reject(error);
+      }
+    });
+  };
+
+  return { getCurrentAction, setCurrentAction, setActionPlans, getActionPlans };
 };
 
 export default useLocalStorage;

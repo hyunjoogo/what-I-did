@@ -4,7 +4,7 @@ import useMutation from '../../../hooks/useMutation';
 import useLocalStorage from '../../../hooks/localStorage/useLocalStorage';
 
 const UseInActionForm = () => {
-  const { setCurrentAction } = useLocalStorage();
+  const { setActionPlans } = useLocalStorage();
   const { whatIWill } = useCurrentActionInfo();
 
   const questionTextareaProps = {
@@ -16,11 +16,7 @@ const UseInActionForm = () => {
   } as const;
 
   const { mutate: submitForm, isLoading: isSubmitLoading } = useMutation(() =>
-    // TODO 다시 만들어야 함
-    setCurrentAction({
-      duringTime: 1234,
-      whatIWill: questionTextareaProps.memo.value,
-    }),
+    setActionPlans(questionTextareaProps.memo.value),
   );
 
   return { whatIWill, questionTextareaProps, submitForm, isSubmitLoading };
