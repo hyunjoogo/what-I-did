@@ -18,12 +18,16 @@ const SIDEBAR_INFO: Record<Step, { theme: string; stepKeyword: string; paragraph
   },
 };
 
-const Sidebar = () => {
-  const paragraph = SIDEBAR_INFO.inAction.paragraph;
-  const stepKeyword = SIDEBAR_INFO.inAction.stepKeyword;
+type Props = {
+  step: Step;
+};
+
+const Sidebar = ({ step }: Props) => {
+  const paragraph = SIDEBAR_INFO[step].paragraph;
+  const stepKeyword = SIDEBAR_INFO[step].stepKeyword;
 
   return (
-    <Layout background={SIDEBAR_INFO.inAction.theme}>
+    <Layout background={SIDEBAR_INFO[step].theme}>
       <Typography
         variant="h4"
         color={color.white}
@@ -37,7 +41,7 @@ const Sidebar = () => {
       >
         {paragraph}
       </Typography>
-      <Timer />
+      <Timer step="inAction" />
       <Typography variant="p1" color={color.white}>
         {stepKeyword}
       </Typography>

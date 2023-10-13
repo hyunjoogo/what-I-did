@@ -6,16 +6,21 @@ import Typography from '../../common/Typography/Typography';
 import Button from '../../common/Button/Button';
 import { useCurrentActionInfo } from '../../../Contexts/ActionProgressProvider';
 import format from '../../../utils/format';
+import { Step } from '../../../types/action';
 
-const Timer = () => {
+type Props = {
+  step: Step;
+};
+
+const Timer = ({ step }: Props) => {
   const { startTimestamp, endTimestamp } = useCurrentActionInfo();
-  const { start, stop, leftSeconds, isTicking, restart } = UseTimer(startTimestamp, endTimestamp);
+  const { stop, leftSeconds, isTicking, restart } = UseTimer(endTimestamp);
 
   const formattedTime = format.time(leftSeconds);
 
-  const buttonColor = color.red[600];
-  const buttonText = isTicking ? '정지' : '시작';
-  const buttonAction = isTicking ? stop : start;
+  const buttonColor = color.green[600];
+  const buttonText = isTicking ? '정지' : '다시 시작';
+  const buttonAction = isTicking ? stop : restart;
 
   return (
     <Layout>
@@ -33,34 +38,33 @@ const Timer = () => {
         {`${formattedTime}`}
       </Typography>
 
-      <Button variant="outlined" size="small" onClick={restart}>
-        다시 시작
-      </Button>
-      <Button
-        variant="outlined"
-        size="small"
-        onClick={buttonAction}
-        aria-label="타이머 시작 및 일시정지 버튼"
-        $style={css`
-          border: none;
-          border-radius: 14px;
+      {step === 'inAction' && leftSeconds > 1 && (
+        <Button
+          variant="outlined"
+          size="small"
+          onClick={buttonAction}
+          aria-label="타이머 다시 시작 및 일시정지 버튼"
+          $style={css`
+            border: none;
+            border-radius: 14px;
 
-          &:hover {
-            &:enabled {
-              background-color: ${color.white};
+            &:hover {
+              &:enabled {
+                background-color: ${color.white};
+              }
             }
-          }
-        `}
-      >
-        <Typography
-          variant="h5"
-          color={buttonColor}
-          aria-label={`타이머 ${isTicking ? '시작' : '정지'}`}
-          aria-live="assertive"
+          `}
         >
-          {buttonText}
-        </Typography>
-      </Button>
+          <Typography
+            variant="h5"
+            color={buttonColor}
+            aria-label={`타이머 ${isTicking ? '정지' : '다시 시작'}`}
+            aria-live="assertive"
+          >
+            {buttonText}
+          </Typography>
+        </Button>
+      )}
     </Layout>
   );
 };

@@ -15,12 +15,11 @@ const InActionForm = () => {
     <Layout>
       <PlanResultList>
         <QuestionList>
-          <QuestionAnswer question="어떤 행동을 할 예정입니까?" answer={whatIWill} iconColor={color.red[600]} />
+          <QuestionAnswer question="어떤 행동을 할 예정입니까?" answer={whatIWill} iconColor={color.green[600]} />
         </QuestionList>
-
         <QuestionTextarea question="행동 메모" {...questionTextareaProps.memo} />
       </PlanResultList>
-      <Button variant="danger" onClick={submitForm} isLoading={isSubmitLoading}>
+      <Button variant="success" onClick={submitForm} isLoading={isSubmitLoading}>
         행동 마치기
       </Button>
     </Layout>

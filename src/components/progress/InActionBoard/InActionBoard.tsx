@@ -7,7 +7,7 @@ import InActionForm from '../InActionForm/InActionForm';
 const InActionBoard = () => {
   return (
     <Container>
-      <Sidebar />
+      <Sidebar step="inAction" />
       <Contents>
         <InActionForm />
       </Contents>

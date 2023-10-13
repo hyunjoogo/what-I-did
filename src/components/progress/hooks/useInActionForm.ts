@@ -10,7 +10,7 @@ const UseInActionForm = () => {
   const questionTextareaProps = {
     memo: useQuestionTextarea({
       minLength: 2,
-      maxLength: 30,
+      maxLength: 50,
       required: false,
     }),
   } as const;

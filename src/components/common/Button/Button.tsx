@@ -62,12 +62,12 @@ const VARIANT_TYPE = {
   `,
 
   success: css`
-    background-color: ${color.teal[500]};
+    background-color: ${color.green[500]};
     color: ${color.white};
     border: 1px solid transparent;
     &:hover {
       &:enabled {
-        background-color: ${color.teal[600]};
+        background-color: ${color.green[600]};
       }
     }
   `,
