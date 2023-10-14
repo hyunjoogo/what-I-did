@@ -59,7 +59,25 @@ const useLocalStorage = () => {
     });
   };
 
-  return { getCurrentAction, setCurrentAction, setActionPlans, getActionPlans, updateEndTimestamp };
+  const deleteCurrentAction = () => {
+    return new Promise((resolve, reject) => {
+      try {
+        localStorageManager.deleteCurrentAction();
+        resolve(true);
+      } catch (error) {
+        reject(error);
+      }
+    });
+  };
+
+  return {
+    getCurrentAction,
+    setCurrentAction,
+    setActionPlans,
+    getActionPlans,
+    updateEndTimestamp,
+    deleteCurrentAction,
+  };
 };
 
 export default useLocalStorage;

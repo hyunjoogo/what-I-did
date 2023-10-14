@@ -78,6 +78,11 @@ const localStorageManager = {
     });
     localStorage.setItem(this.ACTION_PLANS, JSON.stringify(actionPlans));
   },
+
+  deleteCurrentAction() {
+    localStorage.removeItem(this.CURRENT_ACTION);
+    console.log(localStorage.getItem(this.CURRENT_ACTION));
+  },
 };
 
 export default localStorageManager;
