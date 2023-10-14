@@ -11,8 +11,8 @@ function App() {
     <ThemeProvider theme={lightTheme}>
       <GlobalStyles />
 
-      {/*<CreateAction />*/}
-      {/*<ActionProgress />*/}
+      <CreateAction />
+      <ActionProgress />
       <Retrospect />
     </ThemeProvider>
   );

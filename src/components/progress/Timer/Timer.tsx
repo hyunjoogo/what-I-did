@@ -1,21 +1,23 @@
 import React from 'react';
-import UseTimer from '../../../hooks/common/useTimer';
 import styled, { css } from 'styled-components';
 import color from '../../../styles/color';
 import Typography from '../../common/Typography/Typography';
 import Button from '../../common/Button/Button';
-import { useCurrentActionInfo } from '../../../Contexts/ActionProgressProvider';
 import format from '../../../utils/format';
 import { Step } from '../../../types/action';
+import UseStepTimer from '../hooks/useStepTimer';
 
 type Props = {
   step: Step;
 };
 
 const Timer = ({ step }: Props) => {
-  const { startTimestamp, endTimestamp } = useCurrentActionInfo();
-  const { stop, leftSeconds, isTicking, restart } = UseTimer(endTimestamp);
-
+  const { leftSeconds, isTicking, stop, restart } = UseStepTimer({
+    step,
+    onComplete: () => {
+      console.log('음악 재생');
+    },
+  });
   const formattedTime = format.time(leftSeconds);
 
   const buttonColor = color.green[600];

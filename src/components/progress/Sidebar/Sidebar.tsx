@@ -41,7 +41,7 @@ const Sidebar = ({ step }: Props) => {
       >
         {paragraph}
       </Typography>
-      {/*<Timer step={step} />*/}
+      <Timer step={step} />
       <Typography variant="p1" color={color.white}>
         {stepKeyword}
       </Typography>
