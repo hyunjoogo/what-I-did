@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import localStorageManager from '../../utils/localStorageManager';
+import useLocalStorage from '../localStorage/useLocalStorage';
+import useMutation from '../useMutation';
 
 type Options = {
   onStart?: () => void;
@@ -11,6 +12,8 @@ const UseTimer = (endTimestamp: number, { onStart, onStop, onComplete }: Options
   // STEP에 따라서 시간을 계산하는 방법을 다르게 해야할듯
   // 행동중에는 end-start인데 (중지-다시시작 기능때문에)
   // 요약중에는 Date.now() - startTime.current 으로 해야함 (중지 기능이 없음)
+
+  const { getCurrentAction, updateEndTimestamp } = useLocalStorage();
 
   const current = Math.floor((endTimestamp - Date.now()) / 1000);
 
@@ -71,11 +74,14 @@ const UseTimer = (endTimestamp: number, { onStart, onStop, onComplete }: Options
   //   setLeftSeconds(seconds.current);
   // }, []);
 
-  const restart = useCallback(() => {
+  const { mutate: submitNewEndTimestamp, isLoading } = useMutation(() => {
+    return updateEndTimestamp(seconds.current).then(() => getCurrentAction());
+  });
+
+  const restart = useCallback(async () => {
     if (!isTicking) {
-      localStorageManager.setNewEndTimestampOfCurrentAction(seconds.current);
-      const { endTimestamp } = localStorageManager.currentAction;
-      endTime.current = endTimestamp;
+      const result = await submitNewEndTimestamp();
+      endTime.current = result!.endTimestamp;
       setIsTicking(true);
 
       // TEST를 위한 코드

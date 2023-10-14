@@ -25,10 +25,21 @@ const useLocalStorage = () => {
     });
   };
 
-  const setActionPlans = (memo: RequestActionPlans) => {
+  const updateEndTimestamp = (endTimestamp: number) => {
+    return new Promise<boolean>((resolve, reject) => {
+      try {
+        localStorageManager.updateEndTimestampOfCurrentAction(endTimestamp);
+        resolve(true);
+      } catch (error) {
+        reject(error);
+      }
+    });
+  };
+
+  const setActionPlans = (memo: RequestActionPlans, endTime: number) => {
     return new Promise((resolve, reject) => {
       try {
-        localStorageManager.setActionPlans(memo);
+        localStorageManager.setActionPlans(memo, endTime);
         resolve(true);
       } catch (error) {
         reject(error);
@@ -48,7 +59,7 @@ const useLocalStorage = () => {
     });
   };
 
-  return { getCurrentAction, setCurrentAction, setActionPlans, getActionPlans };
+  return { getCurrentAction, setCurrentAction, setActionPlans, getActionPlans, updateEndTimestamp };
 };
 
 export default useLocalStorage;

@@ -23,7 +23,7 @@ const localStorageManager = {
     localStorage.setItem(this.CURRENT_ACTION, JSON.stringify(currentAction));
   },
 
-  setNewEndTimestampOfCurrentAction(leftSeconds: number) {
+  updateEndTimestampOfCurrentAction(leftSeconds: number) {
     const prev = this.currentAction;
     const newEndTimestamp = Date.now() + leftSeconds * 1000;
     const newCurrentAction = {
@@ -53,15 +53,16 @@ const localStorageManager = {
     localStorage.setItem(this.ACTION_PLANS, JSON.stringify(actionPlans));
   },
 
-  setActionPlans(memo: RequestActionPlans) {
+  setActionPlans(memo: RequestActionPlans, endTime: number) {
+    const endTimestamp = endTime;
     const localActionPlans = localStorage.getItem(this.ACTION_PLANS);
-    const { whatIWill, ...planInfo } = this.currentAction;
+    const { whatIWill, startTimestamp, duringTime } = this.currentAction;
     if (localActionPlans === null) {
-      return this.createNewActionPlans(memo, { whatIWill, ...planInfo });
+      return this.createNewActionPlans(memo, { whatIWill, endTimestamp, startTimestamp, duringTime });
     }
     const actionPlans: ResponseActionPlans = JSON.parse(localActionPlans);
     actionPlans.plans.push({
-      id: planInfo.startTimestamp,
+      id: startTimestamp,
       whatIWill: whatIWill,
       memo: memo,
       name: '',
@@ -69,7 +70,11 @@ const localStorageManager = {
       whatILearned: '',
       summary: '',
       isDone: false,
-      info: planInfo,
+      info: {
+        startTimestamp,
+        endTimestamp,
+        duringTime,
+      },
     });
     localStorage.setItem(this.ACTION_PLANS, JSON.stringify(actionPlans));
   },

@@ -5,6 +5,8 @@ import useLocalStorage from '../../../hooks/localStorage/useLocalStorage';
 
 const UseInActionForm = () => {
   const { setActionPlans } = useLocalStorage();
+  const { endTimestamp } = useCurrentActionInfo();
+
   const { whatIWill } = useCurrentActionInfo();
 
   const questionTextareaProps = {
@@ -15,9 +17,11 @@ const UseInActionForm = () => {
     }),
   } as const;
 
-  const { mutate: submitForm, isLoading: isSubmitLoading } = useMutation(() =>
-    setActionPlans(questionTextareaProps.memo.value),
-  );
+  const { mutate: submitForm, isLoading: isSubmitLoading } = useMutation(() => {
+    const endTime = endTimestamp >= Date.now() ? Date.now() : endTimestamp;
+    // TODO CurrentAction 삭제 해야함
+    return setActionPlans(questionTextareaProps.memo.value, endTime);
+  });
 
   return { whatIWill, questionTextareaProps, submitForm, isSubmitLoading };
 };
