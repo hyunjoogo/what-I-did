@@ -15,10 +15,10 @@ export type EssentialCurrentAction = {
 
 export type ActionPlans = {
   actorName: string;
-  plans: Plan[];
+  plans: ActionPlan[];
 };
 
-export type Plan = {
+export type ActionPlan = {
   id: number; // 생성날짜
   whatIWill: string;
   memo: string | null;

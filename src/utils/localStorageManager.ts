@@ -1,4 +1,4 @@
-import { ActionPlans, CurrentActionInfo, EssentialCurrentAction } from '../types/action';
+import { ActionPlans, CurrentActionInfo, EssentialCurrentAction, ActionPlan } from '../types/action';
 import { RequestActionPlans, ResponseActionPlans } from '../types/storage';
 
 const localStorageManager = {
@@ -10,6 +10,12 @@ const localStorageManager = {
 
   get actionPlans(): ActionPlans {
     return JSON.parse(localStorage.getItem(this.ACTION_PLANS)!);
+  },
+
+  getActionPlan(id: number): ActionPlan {
+    const actionPlans = this.actionPlans;
+    const actionPlan = actionPlans.plans.filter((plan) => plan.id === id);
+    return actionPlan[0];
   },
 
   setCurrentAction(essentialCurrentAction: EssentialCurrentAction) {
@@ -53,7 +59,7 @@ const localStorageManager = {
     localStorage.setItem(this.ACTION_PLANS, JSON.stringify(actionPlans));
   },
 
-  setActionPlans(memo: RequestActionPlans, endTime: number) {
+  setActionPlan(memo: RequestActionPlans, endTime: number) {
     const endTimestamp = endTime;
     const localActionPlans = localStorage.getItem(this.ACTION_PLANS);
     const { whatIWill, startTimestamp, duringTime } = this.currentAction;

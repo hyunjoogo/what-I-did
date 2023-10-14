@@ -1,5 +1,5 @@
 import localStorageManager from '../../utils/localStorageManager';
-import { EssentialCurrentAction } from '../../types/action';
+import { EssentialCurrentAction, ActionPlan } from '../../types/action';
 import { RequestActionPlans, ResponseActionPlans, ResponseCurrentActionInfo } from '../../types/storage';
 
 const useLocalStorage = () => {
@@ -39,7 +39,7 @@ const useLocalStorage = () => {
   const setActionPlans = (memo: RequestActionPlans, endTime: number) => {
     return new Promise((resolve, reject) => {
       try {
-        localStorageManager.setActionPlans(memo, endTime);
+        localStorageManager.setActionPlan(memo, endTime);
         resolve(true);
       } catch (error) {
         reject(error);
@@ -51,7 +51,17 @@ const useLocalStorage = () => {
     return new Promise<ResponseActionPlans>((resolve, reject) => {
       try {
         const data: ResponseActionPlans = localStorageManager.actionPlans;
-        console.log(data);
+        resolve(data);
+      } catch (error) {
+        reject(error);
+      }
+    });
+  };
+
+  const getActionPlan = (id: number) => {
+    return new Promise<ActionPlan | null>((resolve, reject) => {
+      try {
+        const data: ActionPlan | null = localStorageManager.getActionPlan(id);
         resolve(data);
       } catch (error) {
         reject(error);
@@ -77,6 +87,7 @@ const useLocalStorage = () => {
     getActionPlans,
     updateEndTimestamp,
     deleteCurrentAction,
+    getActionPlan,
   };
 };
 
