@@ -76,6 +76,7 @@ const UseTimer = (endTimestamp: number, { onStart, onStop, onComplete }: Options
       const result = await submitNewEndTimestamp();
       endTime.current = result!.endTimestamp;
       setIsTicking(true);
+      onComplete?.();
 
       // TEST를 위한 코드
       console.log(`종료 예상 시간 : ${new Date(Date.now() + leftSeconds * 1000).toLocaleString()}`);

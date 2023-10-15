@@ -6,16 +6,20 @@ import Button from '../../common/Button/Button';
 import format from '../../../utils/format';
 import { Step } from '../../../types/action';
 import UseStepTimer from '../hooks/useStepTimer';
+import audioPlay from '../../../utils/audioPlay';
+import alarm from '../../../assets/sounds/alarm.mp3';
 
 type Props = {
   step: Step;
 };
 
+const alarmAudio = audioPlay({ asset: alarm });
+
 const Timer = ({ step }: Props) => {
   const { leftSeconds, isTicking, stop, restart } = UseStepTimer({
     step,
     onComplete: () => {
-      console.log('음악 재생');
+      alarmAudio.play();
     },
   });
   const formattedTime = format.time(leftSeconds);
