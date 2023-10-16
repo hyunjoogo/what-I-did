@@ -19,7 +19,7 @@ const InActionForm = () => {
         </QuestionList>
         <QuestionTextarea question="행동 메모" {...questionTextareaProps.memo} />
       </PlanResultList>
-      <Button variant="success" onClick={submitForm} isLoading={isSubmitLoading}>
+      <Button variant="success" onClick={submitForm} $isLoading={isSubmitLoading}>
         행동 마치기
       </Button>
     </Layout>

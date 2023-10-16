@@ -98,7 +98,7 @@ const VARIANT_TYPE = {
 type Props = {
   variant: keyof typeof VARIANT_TYPE;
   size?: ButtonSizeType;
-  isLoading?: boolean;
+  $isLoading?: boolean;
   $block?: boolean;
   $style?: CSSProp;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
@@ -108,7 +108,7 @@ const Button = ({
   children,
   onClick,
   disabled,
-  isLoading,
+  $isLoading,
   size = 'medium',
   $block = true,
   $style,
@@ -118,19 +118,19 @@ const Button = ({
     <StyledButton
       onClick={onClick}
       variant={variant}
-      isLoading={isLoading}
+      $isLoading={$isLoading}
       size={size}
-      disabled={disabled || isLoading}
+      disabled={disabled || $isLoading}
       $block={$block}
       $style={$style}
       {...props}
     >
-      {isLoading && (
+      {$isLoading && (
         <CircularProgressLayout>
           <CircularProgress size={size} />
         </CircularProgressLayout>
       )}
-      <ButtonText isLoading={isLoading}>{children}</ButtonText>
+      <ButtonText $isLoading={$isLoading}>{children}</ButtonText>
     </StyledButton>
   );
 };
@@ -161,11 +161,11 @@ const StyledButton = styled.button<Props>`
   `}
 `;
 
-type ButtonTextProps = Pick<Props, 'isLoading'>;
+type ButtonTextProps = Pick<Props, '$isLoading'>;
 
 const ButtonText = styled.div<ButtonTextProps>`
-  ${({ isLoading }) => css`
-    color: ${isLoading && 'transparent'};
+  ${({ $isLoading }) => css`
+    color: ${$isLoading && 'transparent'};
   `}
 `;
 
