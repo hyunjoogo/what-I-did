@@ -15,10 +15,10 @@ const useLocalStorage = () => {
   };
 
   const setCurrentAction = (essentialCurrentAction: EssentialCurrentAction) => {
-    return new Promise((resolve, reject) => {
+    return new Promise<{ actionId: number }>((resolve, reject) => {
       try {
-        localStorageManager.setCurrentAction(essentialCurrentAction);
-        resolve(true);
+        const result = localStorageManager.setCurrentAction(essentialCurrentAction);
+        resolve(result);
       } catch (error) {
         reject(error);
       }

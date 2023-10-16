@@ -39,7 +39,7 @@ const CreateActionForm = () => {
         <QuestionTextarea question="무엇을 할 예정인가요?" {...questionTextareaProps.whatIWill} />
       </Container>
       <Button variant="primary" onClick={handleClickCreateActionButton} disabled={isDisabled()}>
-        실행 시작하기
+        행동 시작하기
       </Button>
     </Layout>
   );

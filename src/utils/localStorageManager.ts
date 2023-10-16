@@ -27,6 +27,7 @@ const localStorageManager = {
       ...essentialCurrentAction,
     };
     localStorage.setItem(this.CURRENT_ACTION, JSON.stringify(currentAction));
+    return { actionId: startTimestamp };
   },
 
   updateEndTimestampOfCurrentAction(leftSeconds: number) {
