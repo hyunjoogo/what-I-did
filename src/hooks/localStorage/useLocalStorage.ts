@@ -80,6 +80,25 @@ const useLocalStorage = () => {
     });
   };
 
+  const updateActionPlan = (
+    id: number,
+    content: {
+      name: string;
+      whatIDid: string;
+      whatILearned: string;
+      summary: string;
+    },
+  ) => {
+    return new Promise((resolve, reject) => {
+      try {
+        localStorageManager.updateActionPlan(id, content);
+        resolve(true);
+      } catch (error) {
+        reject(error);
+      }
+    });
+  };
+
   return {
     getCurrentAction,
     setCurrentAction,
@@ -88,6 +107,7 @@ const useLocalStorage = () => {
     updateEndTimestamp,
     deleteCurrentAction,
     getActionPlan,
+    updateActionPlan,
   };
 };
 

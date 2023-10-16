@@ -89,6 +89,23 @@ const localStorageManager = {
     localStorage.removeItem(this.CURRENT_ACTION);
     console.log(localStorage.getItem(this.CURRENT_ACTION));
   },
+
+  updateActionPlan(
+    id: number,
+    content: {
+      name: string;
+      whatIDid: string;
+      whatILearned: string;
+      summary: string;
+    },
+  ) {
+    // 전체를 가지고 와
+    const actionPlans = this.actionPlans;
+    const targetIndex = actionPlans.plans.findIndex((value) => value.id === id);
+    actionPlans.plans[targetIndex] = { ...actionPlans.plans[targetIndex], ...content };
+    console.log(actionPlans);
+    localStorage.setItem(this.ACTION_PLANS, JSON.stringify(actionPlans));
+  },
 };
 
 export default localStorageManager;

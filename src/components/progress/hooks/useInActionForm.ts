@@ -3,7 +3,7 @@ import useQuestionTextarea from '../../../hooks/common/useQuestionTextarea';
 import useMutation from '../../../hooks/useMutation';
 import useLocalStorage from '../../../hooks/localStorage/useLocalStorage';
 
-const UseInActionForm = () => {
+const useInActionForm = () => {
   const { setActionPlans, deleteCurrentAction } = useLocalStorage();
   const { endTimestamp } = useCurrentActionInfo();
 
@@ -25,4 +25,4 @@ const UseInActionForm = () => {
   return { whatIWill, questionTextareaProps, submitForm, isSubmitLoading };
 };
 
-export default UseInActionForm;
+export default useInActionForm;

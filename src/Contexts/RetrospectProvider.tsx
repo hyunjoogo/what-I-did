@@ -18,7 +18,7 @@ export default RetrospectProvider;
 
 export const useActionPlanInfo = () => {
   const actionPlanInfo = useContext(RetrospectInfoContext);
-  console.log(actionPlanInfo);
+
   if (actionPlanInfo === null) {
     throw new Error('행동 정보를 불러오는 중 문제가 발생했습니다.');
   }

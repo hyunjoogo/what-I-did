@@ -2,12 +2,15 @@ import React from 'react';
 import styled from 'styled-components';
 import color from '../../../styles/color';
 import Sidebar from '../Sidebar/Sidebar';
+import RetrospectForm from '../RetrospectForm/RetrospectForm';
 
 const RetrospectBoard = () => {
   return (
     <Container>
       <Sidebar step="retrospect" />
-      <Contents>{/*<InActionForm />*/}</Contents>
+      <Contents>
+        <RetrospectForm />
+      </Contents>
     </Container>
   );
 };
