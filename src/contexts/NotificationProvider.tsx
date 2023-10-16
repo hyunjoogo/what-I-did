@@ -8,7 +8,7 @@ export type Notification = {
   message: string;
   id: number; // why?
 };
-type NotificationContextType = {
+export type NotificationContextType = {
   send: (args: Partial<Omit<Notification, 'id'>>) => void;
 };
 
