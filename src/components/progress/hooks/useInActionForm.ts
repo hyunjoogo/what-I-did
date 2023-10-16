@@ -2,10 +2,13 @@ import { useCurrentActionInfo } from '../../../contexts/ActionProgressProvider';
 import useQuestionTextarea from '../../../hooks/common/useQuestionTextarea';
 import useMutation from '../../../hooks/useMutation';
 import useLocalStorage from '../../../hooks/localStorage/useLocalStorage';
+import { ROUTES_PATH } from '../../../constants/routes';
+import { useNavigate } from 'react-router-dom';
 
 const useInActionForm = () => {
   const { setActionPlans, deleteCurrentAction } = useLocalStorage();
-  const { endTimestamp } = useCurrentActionInfo();
+  const { startTimestamp, endTimestamp } = useCurrentActionInfo();
+  const navigate = useNavigate();
 
   const { whatIWill } = useCurrentActionInfo();
 
@@ -17,10 +20,17 @@ const useInActionForm = () => {
     }),
   } as const;
 
-  const { mutate: submitForm, isLoading: isSubmitLoading } = useMutation(() => {
-    const endTime = endTimestamp >= Date.now() ? Date.now() : endTimestamp;
-    return setActionPlans(questionTextareaProps.memo.value, endTime).then(() => deleteCurrentAction());
-  });
+  const { mutate: submitForm, isLoading: isSubmitLoading } = useMutation(
+    () => {
+      const endTime = endTimestamp >= Date.now() ? Date.now() : endTimestamp;
+      return setActionPlans(questionTextareaProps.memo.value, endTime).then(() => deleteCurrentAction());
+    },
+    {
+      onSuccess: () => {
+        return navigate(`${ROUTES_PATH.retrospect}/${startTimestamp}`);
+      },
+    },
+  );
 
   return { whatIWill, questionTextareaProps, submitForm, isSubmitLoading };
 };
