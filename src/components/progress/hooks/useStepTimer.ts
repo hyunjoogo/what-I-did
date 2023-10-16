@@ -1,5 +1,5 @@
 import { Step } from '../../../types/action';
-import { useCurrentActionInfo } from '../../../Contexts/ActionProgressProvider';
+import { useCurrentActionInfo } from '../../../contexts/ActionProgressProvider';
 import UseTimer from '../../../hooks/common/useTimer';
 import { RETROSPECT_MIN } from '../../../constants/action';
 

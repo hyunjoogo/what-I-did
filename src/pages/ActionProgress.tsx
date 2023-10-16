@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import InActionBoard from '../components/progress/InActionBoard/InActionBoard';
-import ActionProgressProvider from '../Contexts/ActionProgressProvider';
+import ActionProgressProvider from '../contexts/ActionProgressProvider';
 
 const ActionProgress = () => {
   return (

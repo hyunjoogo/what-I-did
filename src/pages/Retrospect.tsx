@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import RetrospectProvider from '../Contexts/RetrospectProvider';
+import RetrospectProvider from '../contexts/RetrospectProvider';
 import RetrospectBoard from '../components/progress/RetrospectBoard/RetrospectBoard';
 
 const Retrospect = () => {
