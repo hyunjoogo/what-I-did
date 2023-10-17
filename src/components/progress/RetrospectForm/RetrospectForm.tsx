@@ -5,9 +5,10 @@ import color from '../../../styles/color';
 import QuestionTextarea from '../../common/QuestionTextarea/QuestionTextarea';
 import Button from '../../common/Button/Button';
 import useRetrospectForm from '../hooks/useRetrospectForm';
+import Input from '../../common/Input/Input';
 
 const RetrospectForm = () => {
-  const { whatIWill, memo, questionTextareaProps, submitForm, isSubmitLoading } = useRetrospectForm();
+  const { whatIWill, memo, nameInput, questionTextareaProps, submitForm, isSubmitLoading } = useRetrospectForm();
 
   return (
     <Layout>
@@ -16,7 +17,9 @@ const RetrospectForm = () => {
           <QuestionAnswer question="어떤 행동을 할 예정입니까?" answer={whatIWill} iconColor={color.green[600]} />
           <QuestionAnswer question="행동 중 메모" answer={memo} iconColor={color.green[600]} />
         </QuestionList>
-        <QuestionTextarea question="행동 제목" {...questionTextareaProps.name} />
+        <Input label="행동 제목" errorMessage="10자 이하로 적어주세요.">
+          <Input.TextField maxLength={10} error={nameInput.isInputError} onChange={nameInput.onChangeInput} />
+        </Input>
         <QuestionTextarea question="무엇을 하였나요?" {...questionTextareaProps.whatIDid} />
         <QuestionTextarea question="무엇을 배웠나요?" {...questionTextareaProps.whatILearned} />
         <QuestionTextarea question="행동 요약하기" {...questionTextareaProps.summary} />
