@@ -12,10 +12,10 @@ const localStorageManager = {
     return JSON.parse(localStorage.getItem(this.ACTION_PLANS)!);
   },
 
-  getActionPlan(id: number): ActionPlan | null {
+  getActionPlan(id: number): ActionPlan {
     const actionPlans = this.actionPlans;
     const actionPlan = actionPlans.plans.filter((plan) => plan.id === id);
-    return actionPlan[0] === undefined ? null : actionPlan[0];
+    return actionPlan[0];
   },
 
   setCurrentAction(essentialCurrentAction: EssentialCurrentAction) {
@@ -98,13 +98,13 @@ const localStorageManager = {
       whatIDid: string;
       whatILearned: string;
       summary: string;
+      isDone: boolean;
     },
   ) {
     // 전체를 가지고 와
     const actionPlans = this.actionPlans;
     const targetIndex = actionPlans.plans.findIndex((value) => value.id === id);
     actionPlans.plans[targetIndex] = { ...actionPlans.plans[targetIndex], ...content };
-    console.log(actionPlans);
     localStorage.setItem(this.ACTION_PLANS, JSON.stringify(actionPlans));
   },
 };

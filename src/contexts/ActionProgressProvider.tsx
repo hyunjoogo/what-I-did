@@ -10,15 +10,15 @@ const CurrentActionInfoContext = createContext<CurrentActionInfo | null>(null);
 
 const ActionProgressProvider = ({ children }: PropsWithChildren) => {
   const { actionId } = useParams();
-  const navigate = useNavigate();
-  const { send } = useNotification();
-
   if (!actionId) throw new Error('정상적인 경로로 접근해주세요.');
 
+  const navigate = useNavigate();
+  const { send } = useNotification();
   const { getCurrentAction } = useLocalStorage();
   const { result: currentActionInfo } = useFetch(() => getCurrentAction());
 
   if (!currentActionInfo) return null;
+
   if (Number(actionId) !== currentActionInfo.startTimestamp) {
     send({ message: '이미 끝난 행동입니다. \n행동 만들기 페이지로 이동합니다.' });
     navigate(`${ROUTES_PATH.create}`);

@@ -1,17 +1,17 @@
 import React, { Suspense } from 'react';
 import styled from 'styled-components';
-import RetrospectProvider from '../contexts/RetrospectProvider';
 import RetrospectBoard from '../components/progress/RetrospectBoard/RetrospectBoard';
 import LoadingFallback from '../components/common/LoadingFallback/LoadingFallback';
 import color from '../styles/color';
+import ActionPlanProvider from '../contexts/ActionPlanProvider';
 
 const ActionRetrospect = () => {
   return (
     <Layout>
       <Suspense fallback={<LoadingFallback circleColor={color.red[500]} />}>
-        <RetrospectProvider>
+        <ActionPlanProvider>
           <RetrospectBoard />
-        </RetrospectProvider>
+        </ActionPlanProvider>
       </Suspense>
     </Layout>
   );

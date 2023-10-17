@@ -59,7 +59,7 @@ const useLocalStorage = () => {
   };
 
   const getActionPlan = (id: number) => {
-    return new Promise<ActionPlan | null>((resolve, reject) => {
+    return new Promise<ActionPlan>((resolve, reject) => {
       try {
         const data = localStorageManager.getActionPlan(id);
         resolve(data);
@@ -87,6 +87,7 @@ const useLocalStorage = () => {
       whatIDid: string;
       whatILearned: string;
       summary: string;
+      isDone: boolean;
     },
   ) => {
     return new Promise((resolve, reject) => {

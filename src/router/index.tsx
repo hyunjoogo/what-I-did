@@ -32,7 +32,7 @@ const router = createBrowserRouter([
         element: <Retrospect />,
       },
       {
-        path: ROUTES_PATH.record,
+        path: `${ROUTES_PATH.record}/:actionId`,
         element: <ActionRecord />,
       },
     ],

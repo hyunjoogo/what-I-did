@@ -1,16 +1,28 @@
-import { useActionPlanInfo } from '../../../contexts/RetrospectProvider';
 import useQuestionTextarea from '../../../hooks/common/useQuestionTextarea';
 import useMutation from '../../../hooks/useMutation';
 import useLocalStorage from '../../../hooks/localStorage/useLocalStorage';
 import useInput from '../../../hooks/common/useInput';
 import { ROUTES_PATH } from '../../../constants/routes';
 import { useNavigate } from 'react-router-dom';
+import { useActionPlanInfo } from '../../../contexts/ActionPlanProvider';
+import { useNotification } from '../../../contexts/NotificationProvider';
+import { useEffect } from 'react';
 
 const useRetrospectForm = () => {
   const navigate = useNavigate();
+  const { send } = useNotification();
   const { updateActionPlan } = useLocalStorage();
-  const { id, whatIWill, memo } = useActionPlanInfo();
+  const { id: actionId, whatIWill, memo, isDone } = useActionPlanInfo();
+
+  useEffect(() => {
+    if (isDone) {
+      send({ message: '이미 종료된 행동입니다. \n행동 만들기 페이지로 이동합니다.' });
+      navigate(`${ROUTES_PATH.record}/${actionId}`);
+    }
+  }, []);
+
   const nameInput = useInput(true);
+
   const questionTextareaProps = {
     whatIDid: useQuestionTextarea({
       minLength: 2,
@@ -31,14 +43,15 @@ const useRetrospectForm = () => {
 
   const { mutate: submitForm, isLoading: isSubmitLoading } = useMutation(
     () =>
-      updateActionPlan(id, {
+      updateActionPlan(actionId, {
         name: nameInput.state,
         whatIDid: questionTextareaProps.whatIDid.value,
         whatILearned: questionTextareaProps.whatILearned.value,
         summary: questionTextareaProps.summary.value,
+        isDone: true,
       }),
     {
-      onSuccess: () => navigate(`${ROUTES_PATH.record}`),
+      onSuccess: () => navigate(`${ROUTES_PATH.record}/${actionId}`),
     },
   );
 
