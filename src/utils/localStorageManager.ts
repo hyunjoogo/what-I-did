@@ -12,10 +12,10 @@ const localStorageManager = {
     return JSON.parse(localStorage.getItem(this.ACTION_PLANS)!);
   },
 
-  getActionPlan(id: number): ActionPlan {
+  getActionPlan(id: number): ActionPlan | null {
     const actionPlans = this.actionPlans;
     const actionPlan = actionPlans.plans.filter((plan) => plan.id === id);
-    return actionPlan[0];
+    return actionPlan[0] === undefined ? null : actionPlan[0];
   },
 
   setCurrentAction(essentialCurrentAction: EssentialCurrentAction) {

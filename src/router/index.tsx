@@ -6,7 +6,7 @@ import Landing from '../pages/Landing';
 
 const CreateAction = lazy(() => import('../pages/CreateAction'));
 const ActionProgress = lazy(() => import('../pages/ActionProgress'));
-const Retrospect = lazy(() => import('../pages/Retrospect'));
+const Retrospect = lazy(() => import('../pages/ActionRetrospect'));
 const ActionRecord = lazy(() => import('../pages/ActionRecord'));
 
 const router = createBrowserRouter([
