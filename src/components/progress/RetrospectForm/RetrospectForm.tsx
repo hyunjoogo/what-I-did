@@ -8,7 +8,8 @@ import useRetrospectForm from '../hooks/useRetrospectForm';
 import Input from '../../common/Input/Input';
 
 const RetrospectForm = () => {
-  const { whatIWill, memo, nameInput, questionTextareaProps, submitForm, isSubmitLoading } = useRetrospectForm();
+  const { whatIWill, memo, nameInput, questionTextareaProps, submitForm, isSubmitLoading, isDisabled } =
+    useRetrospectForm();
 
   return (
     <Layout>
@@ -24,7 +25,7 @@ const RetrospectForm = () => {
         <QuestionTextarea question="무엇을 배웠나요?" {...questionTextareaProps.whatILearned} />
         <QuestionTextarea question="행동 요약하기" {...questionTextareaProps.summary} />
       </PlanResultList>
-      <Button variant="success" onClick={submitForm} $isLoading={isSubmitLoading}>
+      <Button variant="success" onClick={submitForm} $isLoading={isSubmitLoading} disabled={isDisabled()}>
         행동 종료
       </Button>
     </Layout>
