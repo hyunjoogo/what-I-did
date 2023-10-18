@@ -1,11 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useActionPlanInfo } from '../../../contexts/ActionPlanProvider';
+import ActionInformation from '../ActionInformation/ActionInformation';
 
 const ActionRecordContents = () => {
-  const actionPlan = useActionPlanInfo();
-
-  return <Layout></Layout>;
+  return (
+    <Layout>
+      <ActionInformation />
+    </Layout>
+  );
 };
 
 export default ActionRecordContents;
