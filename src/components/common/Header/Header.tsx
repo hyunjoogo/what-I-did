@@ -11,7 +11,6 @@ const Header = () => {
           variant="h1"
           $style={css`
             display: inline;
-
             font-size: 4rem;
             font-weight: 200;
           `}
