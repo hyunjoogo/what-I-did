@@ -6,6 +6,7 @@ import QuestionTextarea from '../../common/QuestionTextarea/QuestionTextarea';
 import Button from '../../common/Button/Button';
 import useRetrospectForm from '../hooks/useRetrospectForm';
 import Input from '../../common/Input/Input';
+import { PLAN_KEYWORDS } from '../../../constants/action';
 
 const RetrospectForm = () => {
   const { whatIWill, memo, nameInput, questionTextareaProps, submitForm, isSubmitLoading, isDisabled } =
@@ -15,15 +16,15 @@ const RetrospectForm = () => {
     <Layout>
       <PlanResultList>
         <QuestionList>
-          <QuestionAnswer question="어떤 행동을 할 예정입니까?" answer={whatIWill} iconColor={color.green[600]} />
-          <QuestionAnswer question="행동 중 메모" answer={memo} iconColor={color.green[600]} />
+          <QuestionAnswer question={PLAN_KEYWORDS['whatIWill']} answer={whatIWill} iconColor={color.green[600]} />
+          <QuestionAnswer question={PLAN_KEYWORDS['memo']} answer={memo} iconColor={color.green[600]} />
         </QuestionList>
         <Input label="행동 제목" errorMessage="10자 이하로 적어주세요.">
           <Input.TextField maxLength={10} error={nameInput.isInputError} onChange={nameInput.onChangeInput} />
         </Input>
-        <QuestionTextarea question="무엇을 하였나요?" {...questionTextareaProps.whatIDid} />
-        <QuestionTextarea question="무엇을 배웠나요?" {...questionTextareaProps.whatILearned} />
-        <QuestionTextarea question="행동 요약하기" {...questionTextareaProps.summary} />
+        <QuestionTextarea question={PLAN_KEYWORDS['whatIDid']} {...questionTextareaProps.whatIDid} />
+        <QuestionTextarea question={PLAN_KEYWORDS['whatILearned']} {...questionTextareaProps.whatILearned} />
+        <QuestionTextarea question={PLAN_KEYWORDS['summary']} {...questionTextareaProps.summary} />
       </PlanResultList>
       <Button variant="success" onClick={submitForm} $isLoading={isSubmitLoading} disabled={isDisabled()}>
         행동 종료

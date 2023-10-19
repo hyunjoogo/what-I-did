@@ -5,6 +5,7 @@ import QuestionTextarea from '../../common/QuestionTextarea/QuestionTextarea';
 import useInActionForm from '../hooks/useInActionForm';
 import QuestionAnswer from '../../common/QuestionAnswer/QuestionAnswer';
 import color from '../../../styles/color';
+import { PLAN_KEYWORDS } from '../../../constants/action';
 
 const InActionForm = () => {
   const { whatIWill, questionTextareaProps, submitForm, isSubmitLoading } = useInActionForm();
@@ -15,9 +16,9 @@ const InActionForm = () => {
     <Layout>
       <PlanResultList>
         <QuestionList>
-          <QuestionAnswer question="어떤 행동을 할 예정입니까?" answer={whatIWill} iconColor={color.green[600]} />
+          <QuestionAnswer question={PLAN_KEYWORDS['whatIWill']} answer={whatIWill} iconColor={color.green[600]} />
         </QuestionList>
-        <QuestionTextarea question="행동 메모" {...questionTextareaProps.memo} />
+        <QuestionTextarea question={PLAN_KEYWORDS['memo']} {...questionTextareaProps.memo} />
       </PlanResultList>
       <Button variant="success" onClick={submitForm} $isLoading={isSubmitLoading}>
         행동 마치기

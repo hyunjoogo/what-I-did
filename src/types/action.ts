@@ -30,6 +30,10 @@ export type ActionPlan = {
   info: PlanInfo;
 };
 
+export type DisplayPlan = 'whatIWill' | 'memo' | 'whatIDid' | 'whatILearned' | 'summary';
+
+export type DisplayPlanList = Record<DisplayPlan, string>;
+
 export type PlanInfo = {
   startTimestamp: number;
   duringTime: number;

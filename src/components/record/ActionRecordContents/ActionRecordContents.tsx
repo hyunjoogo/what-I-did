@@ -1,11 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import ActionInformation from '../ActionInformation/ActionInformation';
+import ActionDetailInformation from '../ActionDetailInformation/ActionDetailInformation';
 
 const ActionRecordContents = () => {
   return (
     <Layout>
       <ActionInformation />
+      <ActionDetailInformation />
     </Layout>
   );
 };
