@@ -27,8 +27,8 @@ const ActionInformation = () => {
             {name}
           </Typography>
         </Title>
-        <Button variant="secondary" size="small" $block={false}>
-          다시 만들기
+        <Button variant="secondary" size="x-small" $block={false} onClick={() => alert('create 페이지로 이동')}>
+          새로 만들기
         </Button>
       </TitleWrapper>
       <StudyInfoContainer>

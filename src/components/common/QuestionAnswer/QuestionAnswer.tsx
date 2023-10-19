@@ -6,7 +6,7 @@ import CircleCheckIcon from '../../../assets/icons/CircleCheckIcon';
 
 type Props = {
   question: string;
-  answer?: string;
+  answer?: string | null;
   iconColor?: string;
 };
 

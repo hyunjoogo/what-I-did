@@ -28,7 +28,7 @@ const ContentsContainer = styled.div`
   max-width: 1200px;
 
   margin: 0 auto;
-  padding: 0px 60px;
+  padding: 0 60px;
   padding-bottom: 60px;
 
   @media screen and (max-width: 768px) {
@@ -36,7 +36,7 @@ const ContentsContainer = styled.div`
 
     width: 90%;
 
-    padding: 0px;
+    padding: 0;
     padding-bottom: 60px;
   }
 `;

@@ -13,7 +13,7 @@ const RecordItem = () => {
     <ParticipantRecordLayout>
       {getKeys<DisplayPlan>(PLAN_KEYWORDS).map((key, index) => (
         <TabItemSection key={index}>
-          <QuestionAnswer question={PLAN_KEYWORDS[key]} answer={actionPlanInfo[key]!} iconColor={color.blue[500]} />
+          <QuestionAnswer question={PLAN_KEYWORDS[key]} answer={actionPlanInfo[key]} iconColor={color.blue[500]} />
         </TabItemSection>
       ))}
     </ParticipantRecordLayout>
