@@ -6,12 +6,15 @@ import CalenderIcon from '../../../assets/icons/CalenderIcon';
 import TimeLineIcon from '../../../assets/icons/TimeLineIcon';
 import { useActionPlanInfo } from '../../../contexts/ActionPlanProvider';
 import Button from '../../common/Button/Button';
+import format from '../../../utils/format';
 
 const ActionInformation = () => {
   const {
     name,
     info: { startTimestamp, duringTime },
   } = useActionPlanInfo();
+
+  const displayDate = format.date(new Date(startTimestamp));
 
   return (
     <StudyInformationLayout>
@@ -21,7 +24,6 @@ const ActionInformation = () => {
             variant="h2"
             $style={css`
               font-weight: 700;
-              margin-bottom: 0;
             `}
           >
             {name}
@@ -36,7 +38,7 @@ const ActionInformation = () => {
           <CalenderIcon color={color.neutral[700]} />
           진행 날짜
         </Typography>
-        <Typography variant="p2">{startTimestamp}</Typography>
+        <Typography variant="p2">{displayDate}</Typography>
       </StudyInfoContainer>
       <StudyInfoContainer>
         <Typography variant="p2">
@@ -55,16 +57,6 @@ const StudyInformationLayout = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
-
-  h2 {
-    margin-bottom: 20px;
-  }
-
-  @media screen and (max-width: 768px) {
-    h2 {
-      margin-bottom: 0;
-    }
-  }
 `;
 
 const StudyInfoContainer = styled.div`
