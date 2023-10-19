@@ -8,6 +8,7 @@ const CreateAction = lazy(() => import('../pages/CreateAction'));
 const ActionProgress = lazy(() => import('../pages/ActionProgress'));
 const Retrospect = lazy(() => import('../pages/ActionRetrospect'));
 const ActionRecord = lazy(() => import('../pages/ActionRecord'));
+const MemberRecord = lazy(() => import('../pages/MemberRecord'));
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
       {
         path: `${ROUTES_PATH.record}/:actionId`,
         element: <ActionRecord />,
+      },
+      {
+        path: `${ROUTES_PATH.member}`,
+        element: <MemberRecord />,
       },
     ],
   },
