@@ -4,16 +4,19 @@ import { lightTheme } from './styles/theme';
 import GlobalStyles from './styles/globalStyle';
 import { Outlet } from 'react-router-dom';
 import NotificationProvider from './contexts/NotificationProvider';
+import MemberInfoProvider from './contexts/MemberInfoProvider';
 
 function App() {
   return (
     <ThemeProvider theme={lightTheme}>
       <GlobalStyles />
-      <NotificationProvider>
-        <Suspense>
-          <Outlet />
-        </Suspense>
-      </NotificationProvider>
+      <Suspense>
+        <NotificationProvider>
+          <MemberInfoProvider>
+            <Outlet />
+          </MemberInfoProvider>
+        </NotificationProvider>
+      </Suspense>
     </ThemeProvider>
   );
 }

@@ -4,9 +4,11 @@ import TimeLineIcon from '../../../assets/icons/TimeLineIcon';
 import color from '../../../styles/color';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES_PATH } from '../../../constants/routes';
+import { useMemberInfo } from '../../../contexts/MemberInfoProvider';
 
 const MemberProfile = () => {
   const navigate = useNavigate();
+  const memberInfo = useMemberInfo();
 
   const handleClickHistoryIcon = () => {
     navigate(`${ROUTES_PATH.member}`);
@@ -16,10 +18,12 @@ const MemberProfile = () => {
     alert('이름 설정할 수 있도록');
   };
 
+  console.log(memberInfo);
+
   return (
     <Layout>
       <MemberNameWrapper onClick={handleClickMemberName}>
-        <Typography variant="p3">김현주</Typography>
+        <Typography variant="p3">{memberInfo?.actorName}</Typography>
       </MemberNameWrapper>
       <HistoryWrapper onClick={handleClickHistoryIcon}>
         <TimeLineIcon color={color.neutral[800]} />

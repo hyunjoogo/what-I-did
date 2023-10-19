@@ -1,12 +1,24 @@
 import localStorageManager from '../../utils/localStorageManager';
 import { EssentialCurrentAction, ActionPlan } from '../../types/action';
 import { RequestActionPlans, ResponseActionPlans, ResponseCurrentActionInfo } from '../../types/storage';
+import { MemberInfo } from '../../types/member';
 
 const useLocalStorage = () => {
-  const getCurrentAction = () => {
-    return new Promise<ResponseCurrentActionInfo>((resolve, reject) => {
+  const getActorInfo = () => {
+    return new Promise<MemberInfo>((resolve, reject) => {
       try {
-        const data: ResponseCurrentActionInfo = localStorageManager.currentAction;
+        const memberInfo: MemberInfo = localStorageManager.actorInfo;
+        resolve(memberInfo);
+      } catch (error) {
+        reject(error);
+      }
+    });
+  };
+
+  const getCurrentAction = () => {
+    return new Promise<ResponseCurrentActionInfo | null>((resolve, reject) => {
+      try {
+        const data: ResponseCurrentActionInfo | null = localStorageManager.currentAction;
         resolve(data);
       } catch (error) {
         reject(error);
@@ -101,6 +113,7 @@ const useLocalStorage = () => {
   };
 
   return {
+    getActorInfo,
     getCurrentAction,
     setCurrentAction,
     setActionPlans,

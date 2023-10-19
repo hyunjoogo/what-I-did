@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { ROUTES_PATH } from '../../../constants/routes';
 
 const MemberRecordList = () => {
-  const { plans } = useActionPlansInfo();
+  const actionPlansInfo = useActionPlansInfo();
   const navigate = useNavigate();
   const handleClickItem = (actionId: number) => {
     navigate(`${ROUTES_PATH.record}/${actionId}`);
@@ -14,9 +14,9 @@ const MemberRecordList = () => {
 
   return (
     <Layout>
-      {plans.reverse().map((action, index) => (
-        <MemberRecordItem key={index} action={action} handleClickItem={handleClickItem} />
-      ))}
+      {actionPlansInfo?.plans
+        ?.reverse()
+        .map((action, index) => <MemberRecordItem key={index} action={action} handleClickItem={handleClickItem} />)}
     </Layout>
   );
 };

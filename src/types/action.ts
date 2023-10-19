@@ -1,4 +1,5 @@
 import { ACTION_TIME_OPTIONS } from '../constants/action';
+import { MemberInfo } from './member';
 
 export type ActionTimeOptions = (typeof ACTION_TIME_OPTIONS)[number];
 
@@ -13,8 +14,7 @@ export type EssentialCurrentAction = {
   whatIWill: string;
 };
 
-export type ActionPlans = {
-  actorName: string;
+export type ActionPlans = MemberInfo & {
   plans: ActionPlan[];
 };
 
