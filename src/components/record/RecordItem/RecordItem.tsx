@@ -11,16 +11,11 @@ const RecordItem = () => {
   const actionPlanInfo = useActionPlanInfo();
   return (
     <ParticipantRecordLayout>
-      <TabItemSection>
-        {getKeys<DisplayPlan>(PLAN_KEYWORDS).map((key, index) => (
-          <QuestionAnswer
-            key={index}
-            question={PLAN_KEYWORDS[key]}
-            answer={actionPlanInfo[key]!}
-            iconColor={color.blue[500]}
-          />
-        ))}
-      </TabItemSection>
+      {getKeys<DisplayPlan>(PLAN_KEYWORDS).map((key, index) => (
+        <TabItemSection key={index}>
+          <QuestionAnswer question={PLAN_KEYWORDS[key]} answer={actionPlanInfo[key]!} iconColor={color.blue[500]} />
+        </TabItemSection>
+      ))}
     </ParticipantRecordLayout>
   );
 };
@@ -29,6 +24,11 @@ export default RecordItem;
 
 const ParticipantRecordLayout = styled.div`
   min-height: 308px;
+  padding: 40px 30px;
+
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 30px;
 
   h5 {
     display: flex;
@@ -41,15 +41,12 @@ const ParticipantRecordLayout = styled.div`
 
   @media screen and (max-width: 768px) {
     padding: 0;
+    row-gap: 15px;
   }
 `;
 
 const TabItemSection = styled.div`
-  width: 46%;
-
-  display: flex;
-  flex-direction: column;
-  gap: 45px;
+  width: 50%;
 
   svg {
     margin-right: 10px;
