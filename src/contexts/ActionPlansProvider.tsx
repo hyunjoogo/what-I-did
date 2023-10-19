@@ -16,12 +16,4 @@ const ActionPlansProvider = ({ children }: PropsWithChildren) => {
 
 export default ActionPlansProvider;
 
-export const useActionPlansInfo = () => {
-  const actionPlans = useContext(ActionPlansContext);
-
-  if (actionPlans === null) {
-    throw new Error('행동 정보를 불러오는 중 문제가 발생했습니다.');
-  }
-
-  return actionPlans;
-};
+export const useActionPlansInfo = () => useContext(ActionPlansContext);

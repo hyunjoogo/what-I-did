@@ -1,15 +1,22 @@
 import { ActionPlans, CurrentActionInfo, EssentialCurrentAction, ActionPlan } from '../types/action';
 import { RequestActionPlans, ResponseActionPlans } from '../types/storage';
+import { MemberInfo } from '../types/member';
 
 const localStorageManager = {
   CURRENT_ACTION: 'currentAction',
   ACTION_PLANS: 'actionPlans',
-  get currentAction(): CurrentActionInfo {
-    return JSON.parse(localStorage.getItem(this.CURRENT_ACTION)!);
+  get currentAction(): CurrentActionInfo | null {
+    const currentActionStr = localStorage.getItem(this.CURRENT_ACTION);
+    return currentActionStr === null ? null : JSON.parse(currentActionStr);
   },
 
   get actionPlans(): ActionPlans {
     return JSON.parse(localStorage.getItem(this.ACTION_PLANS)!);
+  },
+
+  get actorInfo(): MemberInfo {
+    const actionPlans = localStorage.getItem(this.ACTION_PLANS);
+    return { actorName: actionPlans === null ? null : JSON.parse(actionPlans).actorName };
   },
 
   getActionPlan(id: number): ActionPlan {
@@ -31,7 +38,7 @@ const localStorageManager = {
   },
 
   updateEndTimestampOfCurrentAction(leftSeconds: number) {
-    const prev = this.currentAction;
+    const prev = this.currentAction!;
     const newEndTimestamp = Date.now() + leftSeconds * 1000;
     const newCurrentAction = {
       ...prev,
@@ -63,7 +70,7 @@ const localStorageManager = {
   setActionPlan(memo: RequestActionPlans, endTime: number) {
     const endTimestamp = endTime;
     const localActionPlans = localStorage.getItem(this.ACTION_PLANS);
-    const { whatIWill, startTimestamp, duringTime } = this.currentAction;
+    const { whatIWill, startTimestamp, duringTime } = this.currentAction!;
     if (localActionPlans === null) {
       return this.createNewActionPlans(memo, { whatIWill, endTimestamp, startTimestamp, duringTime });
     }
