@@ -60,9 +60,9 @@ const useLocalStorage = () => {
   };
 
   const getActionPlans = () => {
-    return new Promise<ResponseActionPlans>((resolve, reject) => {
+    return new Promise<ResponseActionPlans | null>((resolve, reject) => {
       try {
-        const data: ResponseActionPlans = localStorageManager.actionPlans;
+        const data: ResponseActionPlans | null = localStorageManager.actionPlans;
         resolve(data);
       } catch (error) {
         reject(error);
@@ -71,9 +71,9 @@ const useLocalStorage = () => {
   };
 
   const getActionPlan = (id: number) => {
-    return new Promise<ActionPlan>((resolve, reject) => {
+    return new Promise<ActionPlan | null>((resolve, reject) => {
       try {
-        const data = localStorageManager.getActionPlan(id);
+        const data: ActionPlan | null = localStorageManager.getActionPlan(id);
         resolve(data);
       } catch (error) {
         reject(error);

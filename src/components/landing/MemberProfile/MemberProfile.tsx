@@ -18,8 +18,6 @@ const MemberProfile = () => {
     alert('이름 설정할 수 있도록');
   };
 
-  console.log(memberInfo);
-
   return (
     <Layout>
       <MemberNameWrapper onClick={handleClickMemberName}>

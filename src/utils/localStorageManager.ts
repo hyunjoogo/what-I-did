@@ -10,8 +10,9 @@ const localStorageManager = {
     return currentActionStr === null ? null : JSON.parse(currentActionStr);
   },
 
-  get actionPlans(): ActionPlans {
-    return JSON.parse(localStorage.getItem(this.ACTION_PLANS)!);
+  get actionPlans(): ActionPlans | null {
+    const actionPlansStr = localStorage.getItem(this.ACTION_PLANS);
+    return actionPlansStr === null ? null : JSON.parse(actionPlansStr);
   },
 
   get actorInfo(): MemberInfo {
@@ -19,8 +20,11 @@ const localStorageManager = {
     return { actorName: actionPlans === null ? null : JSON.parse(actionPlans).actorName };
   },
 
-  getActionPlan(id: number): ActionPlan {
+  getActionPlan(id: number): ActionPlan | null {
     const actionPlans = this.actionPlans;
+    if (actionPlans === null) {
+      return null;
+    }
     const actionPlan = actionPlans.plans.filter((plan) => plan.id === id);
     return actionPlan[0];
   },
@@ -109,7 +113,7 @@ const localStorageManager = {
     },
   ) {
     // 전체를 가지고 와
-    const actionPlans = this.actionPlans;
+    const actionPlans = this.actionPlans!;
     const targetIndex = actionPlans.plans.findIndex((value) => value.id === id);
     actionPlans.plans[targetIndex] = { ...actionPlans.plans[targetIndex], ...content };
     localStorage.setItem(this.ACTION_PLANS, JSON.stringify(actionPlans));

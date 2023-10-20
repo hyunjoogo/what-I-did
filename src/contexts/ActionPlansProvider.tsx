@@ -11,6 +11,8 @@ const ActionPlansProvider = ({ children }: PropsWithChildren) => {
 
   if (isLoading && !result) return null;
 
+  console.log(result);
+
   return <ActionPlansContext.Provider value={result}>{children}</ActionPlansContext.Provider>;
 };
 
