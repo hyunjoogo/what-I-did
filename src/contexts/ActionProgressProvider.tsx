@@ -1,4 +1,4 @@
-import { createContext, PropsWithChildren, useContext } from 'react';
+import React, { createContext, PropsWithChildren, useContext, useState } from 'react';
 import { CurrentActionInfo } from '../types/action';
 import useLocalStorage from '../hooks/localStorage/useLocalStorage';
 import useFetch from '../hooks/useFetch';
@@ -15,15 +15,29 @@ const ActionProgressProvider = ({ children }: PropsWithChildren) => {
   const navigate = useNavigate();
   const { send } = useNotification();
   const { getCurrentAction } = useLocalStorage();
-  const { result: currentActionInfo } = useFetch(() => getCurrentAction());
 
-  if (!currentActionInfo) return null;
+  const [currentActionInfo, setCurrentActionInfo] = useState<CurrentActionInfo | null>(null);
+
+  const { isLoading } = useFetch(() => getCurrentAction(), {
+    onSuccess: setCurrentActionInfo,
+  });
+
+  if (!currentActionInfo && isLoading) {
+    return null;
+  }
+
+  if (!currentActionInfo) {
+    send({ message: '이미 행동 마치기를 하셨습니다. \n행동 만들기 페이지로 이동합니다.' });
+    navigate(`${ROUTES_PATH.create}`);
+    return null;
+  }
 
   if (Number(actionId) !== currentActionInfo.startTimestamp) {
     send({ message: '이미 끝난 행동입니다. \n행동 만들기 페이지로 이동합니다.' });
     navigate(`${ROUTES_PATH.create}`);
     return null;
   }
+
   return <CurrentActionInfoContext.Provider value={currentActionInfo}>{children}</CurrentActionInfoContext.Provider>;
 };
 

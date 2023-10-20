@@ -10,7 +10,7 @@ const MemberInfoProvider = ({ children }: PropsWithChildren) => {
   const { result, isLoading } = useFetch(() => getActorInfo());
 
   // if (isLoading) return null;
-  console.log(result);
+  console.log('MemberInfo', result);
 
   return <MemberInfoContext.Provider value={result}>{children}</MemberInfoContext.Provider>;
 };
