@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { ROUTES_PATH } from '../../../constants/routes';
 import Typography from '../Typography/Typography';
 import styled, { css } from 'styled-components';
+import color from '../../../styles/color';
 
 const Header = () => {
   return (
@@ -15,7 +16,7 @@ const Header = () => {
             font-weight: 200;
           `}
         >
-          행동 기록
+          What I <Emphasis>Did</Emphasis>
         </Typography>
       </Link>
     </Layout>
@@ -30,6 +31,6 @@ const Layout = styled.header`
   display: flex;
 `;
 
-// const Emphasis = styled.span`
-//   color: ${color.blue[500]};
-// `;
+const Emphasis = styled.span`
+  color: ${color.blue[500]};
+`;
