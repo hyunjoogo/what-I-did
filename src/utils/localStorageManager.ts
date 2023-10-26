@@ -52,8 +52,8 @@ const localStorageManager = {
   },
 
   createNewActionPlans(memo: RequestActionPlans, { whatIWill, ...planInfo }: CurrentActionInfo) {
-    const actionPlans: ActionPlans = {
-      actorName: '이름',
+    const actionPlansTemplate: ActionPlans = {
+      actorName: null,
       plans: [
         {
           id: planInfo.startTimestamp,
@@ -68,13 +68,14 @@ const localStorageManager = {
         },
       ],
     };
-    localStorage.setItem(this.ACTION_PLANS, JSON.stringify(actionPlans));
+    localStorage.setItem(this.ACTION_PLANS, JSON.stringify(actionPlansTemplate));
   },
 
   setActionPlan(memo: RequestActionPlans, endTime: number) {
     const endTimestamp = endTime;
     const localActionPlans = localStorage.getItem(this.ACTION_PLANS);
     const { whatIWill, startTimestamp, duringTime } = this.currentAction!;
+    // 로컬스토리지에 plan 데이터가 없으면 기본값을 생성해준다.
     if (localActionPlans === null) {
       return this.createNewActionPlans(memo, { whatIWill, endTimestamp, startTimestamp, duringTime });
     }

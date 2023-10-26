@@ -18,10 +18,12 @@ const MemberProfile = () => {
     alert('이름 설정할 수 있도록');
   };
 
+  console.log(memberInfo);
+
   return (
     <Layout>
       <MemberNameWrapper onClick={handleClickMemberName}>
-        <Typography variant="p3">{memberInfo?.actorName}</Typography>
+        <Typography variant="p3">{memberInfo?.actorName === null ? '알 수 없음' : memberInfo?.actorName}</Typography>
       </MemberNameWrapper>
       <HistoryWrapper onClick={handleClickHistoryIcon}>
         <TimeLineIcon color={color.neutral[800]} />
