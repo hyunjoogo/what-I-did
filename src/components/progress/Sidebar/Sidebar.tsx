@@ -8,7 +8,7 @@ import Timer from '../Timer/Timer';
 const SIDEBAR_INFO: Record<Step, { theme: string; stepKeyword: string; paragraph: string }> = {
   inAction: {
     theme: color.green[600],
-    stepKeyword: '행동 실행',
+    stepKeyword: '행동 실행하기',
     paragraph: '행동을 시작해봅시다.\n나의 행동을 메모하면 좋습니다.',
   },
   retrospect: {
