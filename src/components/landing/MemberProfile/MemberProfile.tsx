@@ -5,10 +5,12 @@ import color from '../../../styles/color';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES_PATH } from '../../../constants/routes';
 import { useMemberInfo } from '../../../contexts/MemberInfoProvider';
+import useActorName from '../../../hooks/common/useActorName';
 
 const MemberProfile = () => {
   const navigate = useNavigate();
   const memberInfo = useMemberInfo();
+  const actorName = useActorName(memberInfo?.actorName);
 
   const handleClickHistoryIcon = () => {
     navigate(`${ROUTES_PATH.member}`);
@@ -23,7 +25,7 @@ const MemberProfile = () => {
   return (
     <Layout>
       <MemberNameWrapper onClick={handleClickMemberName}>
-        <Typography variant="p3">{memberInfo?.actorName === null ? '알 수 없음' : memberInfo?.actorName}</Typography>
+        <Typography variant="p3">{actorName}</Typography>
       </MemberNameWrapper>
       <HistoryWrapper onClick={handleClickHistoryIcon}>
         <TimeLineIcon color={color.neutral[800]} />

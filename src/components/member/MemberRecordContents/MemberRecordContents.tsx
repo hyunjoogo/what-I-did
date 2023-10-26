@@ -1,8 +1,12 @@
 import styled, { css } from 'styled-components';
 import Typography from '../../common/Typography/Typography';
 import MemberRecordList from '../MemberRecordList/MemberRecordList';
+import { useMemberInfo } from '../../../contexts/MemberInfoProvider';
+import useActorName from '../../../hooks/common/useActorName';
 
 const MemberRecordContents = () => {
+  const memberInfo = useMemberInfo();
+  const actorName = useActorName(memberInfo?.actorName);
   return (
     <>
       <Title>
@@ -12,7 +16,7 @@ const MemberRecordContents = () => {
             font-weight: 700;
           `}
         >
-          OOO님의 스터디 기록
+          {actorName}님의 스터디 기록
         </Typography>
       </Title>
       <MemberRecordList />
