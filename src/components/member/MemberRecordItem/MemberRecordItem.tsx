@@ -20,7 +20,7 @@ const MemberRecordItem = ({ action, handleClickItem }: Props) => {
       <StudyCycleInfoLayout>
         <StudyCycleInfoContainer>
           <TimeLineIcon color={color.neutral[500]} />
-          <span>사이클 당 학습 시간</span>
+          <span>행동 시간</span>
           <span>{action.info.duringTime}분</span>
         </StudyCycleInfoContainer>
       </StudyCycleInfoLayout>
