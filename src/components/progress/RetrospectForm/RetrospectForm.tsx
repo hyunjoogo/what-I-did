@@ -32,7 +32,7 @@ const RetrospectForm = () => {
         <QuestionTextarea question={PLAN_KEYWORDS['whatILearned']} {...questionTextareaProps.whatILearned} />
         <QuestionTextarea question={PLAN_KEYWORDS['summary']} {...questionTextareaProps.summary} />
       </PlanResultList>
-      <Button variant="success" onClick={submitForm} $isLoading={isSubmitLoading} disabled={isDisabled()}>
+      <Button variant="danger" onClick={submitForm} $isLoading={isSubmitLoading} disabled={isDisabled()}>
         행동 종료
       </Button>
     </Layout>

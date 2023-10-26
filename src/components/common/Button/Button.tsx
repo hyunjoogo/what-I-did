@@ -78,7 +78,7 @@ const VARIANT_TYPE = {
     border: 1px solid transparent;
     &:hover {
       &:enabled {
-        background-color: ${color.red[600]};
+        background-color: ${color.red[500]};
       }
     }
   `,

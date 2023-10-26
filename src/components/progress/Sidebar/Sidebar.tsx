@@ -12,7 +12,7 @@ const SIDEBAR_INFO: Record<Step, { theme: string; stepKeyword: string; paragraph
     paragraph: '행동을 시작해봅시다.\n나의 행동을 메모하면 좋습니다.',
   },
   retrospect: {
-    theme: color.red[400],
+    theme: color.red[500],
     stepKeyword: '행동 요약하기',
     paragraph: '나의 행동을 요약해봅시다.\n중간 메모를 활용하여 의미있는 지식을 생각해보세요',
   },
