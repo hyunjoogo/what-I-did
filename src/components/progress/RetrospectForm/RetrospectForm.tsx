@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import QuestionAnswer from '../../common/QuestionAnswer/QuestionAnswer';
 import color from '../../../styles/color';
 import QuestionTextarea from '../../common/QuestionTextarea/QuestionTextarea';
@@ -19,7 +19,13 @@ const RetrospectForm = () => {
           <QuestionAnswer question={PLAN_KEYWORDS['whatIWill']} answer={whatIWill} iconColor={color.green[600]} />
           <QuestionAnswer question={PLAN_KEYWORDS['memo']} answer={memo} iconColor={color.green[600]} />
         </QuestionList>
-        <Input label="행동 제목" errorMessage="10자 이하로 적어주세요.">
+        <Input
+          label="행동 제목"
+          errorMessage="10자 이하로 적어주세요."
+          $style={css`
+            font-weight: 500;
+          `}
+        >
           <Input.TextField maxLength={10} error={nameInput.isInputError} onChange={nameInput.onChangeInput} />
         </Input>
         <QuestionTextarea question={PLAN_KEYWORDS['whatIDid']} {...questionTextareaProps.whatIDid} />
@@ -80,8 +86,13 @@ const QuestionList = styled.div`
   border: 1px solid #fff;
   border-radius: 14px;
 
+  display: flex;
+  flex-direction: column;
+  row-gap: 30px;
+
   @media screen and (max-width: 768px) {
     padding-left: 20px;
     padding-right: 20px;
+    row-gap: 15px;
   }
 `;
