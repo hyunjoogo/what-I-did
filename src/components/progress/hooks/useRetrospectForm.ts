@@ -44,7 +44,7 @@ const useRetrospectForm = () => {
   const { mutate: submitForm, isLoading: isSubmitLoading } = useMutation(
     () =>
       updateActionPlan(actionId, {
-        name: nameInput.state,
+        name: nameInput.state!,
         whatIDid: questionTextareaProps.whatIDid.value,
         whatILearned: questionTextareaProps.whatILearned.value,
         summary: questionTextareaProps.summary.value,

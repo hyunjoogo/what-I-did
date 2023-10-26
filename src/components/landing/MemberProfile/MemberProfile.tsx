@@ -6,21 +6,22 @@ import { useNavigate } from 'react-router-dom';
 import { ROUTES_PATH } from '../../../constants/routes';
 import { useMemberInfo } from '../../../contexts/MemberInfoProvider';
 import useActorName from '../../../hooks/common/useActorName';
+import { useModal } from '../../../contexts/ModalProvider';
+import ActorNameModal from '../ActorNameModal/ActorNameModal';
 
 const MemberProfile = () => {
   const navigate = useNavigate();
   const memberInfo = useMemberInfo();
   const actorName = useActorName(memberInfo?.actorName);
+  const { openModal } = useModal();
 
   const handleClickHistoryIcon = () => {
     navigate(`${ROUTES_PATH.member}`);
   };
 
   const handleClickMemberName = () => {
-    alert('이름 설정할 수 있도록');
+    openModal(<ActorNameModal actorName={memberInfo!.actorName} />);
   };
-
-  console.log(memberInfo);
 
   return (
     <Layout>

@@ -7,14 +7,10 @@ import MemberProfile from '../components/landing/MemberProfile/MemberProfile';
 import Header from '../components/common/Header/Header';
 
 const Landing = () => {
-  // TODO ActionPlans의 name이 null이면 모달을 띄어서 이름을 물어볼 수 있도록 한다.
-  const isLogin = true;
   const navigate = useNavigate();
 
   const handleClickStartButton = () => {
-    if (isLogin) return navigate(`${ROUTES_PATH.create}`);
-
-    // return openModal(<LoginModalContents />);
+    navigate(`${ROUTES_PATH.create}`);
   };
 
   return (

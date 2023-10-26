@@ -5,6 +5,7 @@ import GlobalStyles from './styles/globalStyle';
 import { Outlet } from 'react-router-dom';
 import NotificationProvider from './contexts/NotificationProvider';
 import MemberInfoProvider from './contexts/MemberInfoProvider';
+import ModalProvider from './contexts/ModalProvider';
 
 function App() {
   return (
@@ -12,9 +13,11 @@ function App() {
       <GlobalStyles />
       <Suspense>
         <NotificationProvider>
-          <MemberInfoProvider>
-            <Outlet />
-          </MemberInfoProvider>
+          <ModalProvider>
+            <MemberInfoProvider>
+              <Outlet />
+            </MemberInfoProvider>
+          </ModalProvider>
         </NotificationProvider>
       </Suspense>
     </ThemeProvider>

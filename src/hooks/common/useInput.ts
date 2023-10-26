@@ -1,7 +1,7 @@
 import { ChangeEventHandler, useCallback, useState } from 'react';
 
 const useInput = (validateOption: boolean) => {
-  const [state, setInputState] = useState<string>('');
+  const [state, setInputState] = useState<string | null>(null);
   const [isInputError, setIsInputError] = useState<boolean>(false);
 
   const onChangeInput: ChangeEventHandler<HTMLInputElement> = useCallback(
@@ -23,6 +23,7 @@ const useInput = (validateOption: boolean) => {
     },
     [setInputState, validateOption],
   );
+
   return { state, isInputError, onChangeInput };
 };
 
