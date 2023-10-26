@@ -112,6 +112,17 @@ const useLocalStorage = () => {
     });
   };
 
+  const setActorName = (name : string) => {
+    return new Promise((resolve, reject) => {
+      try {
+        localStorageManager.updateActorName(name);
+        resolve(true);
+      } catch (error) {
+        reject(error);
+      }
+    });
+  }
+
   return {
     getActorInfo,
     getCurrentAction,
@@ -122,6 +133,7 @@ const useLocalStorage = () => {
     deleteCurrentAction,
     getActionPlan,
     updateActionPlan,
+    setActorName
   };
 };
 

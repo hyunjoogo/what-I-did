@@ -9,8 +9,8 @@ type Props = {
   actorName: string | null;
 };
 const ActorNameModal = ({ actorName }: Props) => {
-  const { openConfirm, closeModal } = useModal();
-  const { actorNameInput } = useActorNameForm();
+  const { closeModal } = useModal();
+  const { actorNameInput, submitForm } = useActorNameForm();
 
   return (
     <Layout>
@@ -24,6 +24,9 @@ const ActorNameModal = ({ actorName }: Props) => {
       </Input>
       {/* TODO 저장 and 닫기 버튼 만들어야 함 */}
       {/* 저장 후 모달 닫는 함수 호출 */}
+        <CloseButton variant="primary" size="x-small" $block={false} onClick={submitForm}>
+            저장
+        </CloseButton>
       <CloseButton variant="secondary" size="x-small" $block={false} onClick={closeModal}>
         닫기
       </CloseButton>

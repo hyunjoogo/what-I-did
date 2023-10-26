@@ -6,7 +6,7 @@ import { useMemberInfo } from '../../../contexts/MemberInfoProvider';
 
 const ActionDetailInformation = () => {
   const memberInfo = useMemberInfo();
-  const actorName = useActorName(memberInfo?.actorName);
+  const actorName = useActorName(memberInfo?.memberInfo?.actorName);
 
   return (
     <Accordion>

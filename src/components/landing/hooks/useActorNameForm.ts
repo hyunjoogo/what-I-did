@@ -1,18 +1,31 @@
 import useInput from '../../../hooks/common/useInput';
 import useMutation from '../../../hooks/useMutation';
 import useLocalStorage from '../../../hooks/localStorage/useLocalStorage';
+import {useModal} from "../../../contexts/ModalProvider";
+import {useMemberInfo} from "../../../contexts/MemberInfoProvider";
+import useActorName from "../../../hooks/common/useActorName";
 
 const useActorNameForm = () => {
-  const actorNameInput = useInput(true);
-  const { updateEndTimestamp } = useLocalStorage();
+    const actorNameInput = useInput(true);
+    const {setActorName} = useLocalStorage();
+    const {closeModal} = useModal();
+    const memberInfo = useMemberInfo();
 
-  // TODO 인풋내용 받아서 로컬에 저장하는 함수 생성 + 연결
-  const { mutate: submitForm, isLoading: isSubmitLoading } = useMutation(() => updateEndTimestamp(123));
 
-  const isDisabled = () => {
-    return actorNameInput.state === '';
-  };
-  return { actorNameInput, submitForm, isSubmitLoading, isDisabled };
+
+    const {mutate: submitForm, isLoading: isSubmitLoading} = useMutation(() => setActorName(actorNameInput.state!), {
+        onSuccess: () => {
+            console.log(memberInfo)
+            memberInfo?.updateActorName(actorNameInput.state!)
+            console.log('heelo')
+            closeModal()
+        }
+    });
+
+    const isDisabled = () => {
+        return actorNameInput.state === '';
+    };
+    return {actorNameInput, submitForm, isSubmitLoading, isDisabled};
 };
 
 export default useActorNameForm;
