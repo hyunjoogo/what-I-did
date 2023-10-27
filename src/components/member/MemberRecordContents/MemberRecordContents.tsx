@@ -1,28 +1,28 @@
-import styled, {css} from 'styled-components';
+import styled, { css } from 'styled-components';
 import Typography from '../../common/Typography/Typography';
 import MemberRecordList from '../MemberRecordList/MemberRecordList';
-import {useMemberInfo} from '../../../contexts/MemberInfoProvider';
-import useActorName from '../../../hooks/common/useActorName';
+import { useMemberInfo } from '../../../contexts/MemberInfoProvider';
+import transActorName from '../../../utils/transActorName';
 
 const MemberRecordContents = () => {
-    const memberInfo = useMemberInfo();
-    const actorName = useActorName(memberInfo?.memberInfo?.actorName);
+  const memberInfo = useMemberInfo();
+  const actorName = transActorName(memberInfo?.actorName);
 
-    return (
-        <>
-            <Title>
-                <Typography
-                    variant="h2"
-                    $style={css`
-                      font-weight: 700;
-                    `}
-                >
-                    {actorName}님의 스터디 기록
-                </Typography>
-            </Title>
-            <MemberRecordList/>
-        </>
-    );
+  return (
+    <>
+      <Title>
+        <Typography
+          variant="h2"
+          $style={css`
+            font-weight: 700;
+          `}
+        >
+          {actorName}님의 스터디 기록
+        </Typography>
+      </Title>
+      <MemberRecordList />
+    </>
+  );
 };
 
 export default MemberRecordContents;

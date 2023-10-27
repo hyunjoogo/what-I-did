@@ -1,12 +1,12 @@
 import Accordion from '../../common/Accordion/Accordion';
 import Typography from '../../common/Typography/Typography';
 import RecordItem from '../RecordItem/RecordItem';
-import useActorName from '../../../hooks/common/useActorName';
+import transActorName from '../../../utils/transActorName';
 import { useMemberInfo } from '../../../contexts/MemberInfoProvider';
 
 const ActionDetailInformation = () => {
   const memberInfo = useMemberInfo();
-  const actorName = useActorName(memberInfo?.memberInfo?.actorName);
+  const actorName = transActorName(memberInfo?.actorName);
 
   return (
     <Accordion>

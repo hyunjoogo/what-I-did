@@ -1,31 +1,24 @@
 import useInput from '../../../hooks/common/useInput';
 import useMutation from '../../../hooks/useMutation';
 import useLocalStorage from '../../../hooks/localStorage/useLocalStorage';
-import {useModal} from "../../../contexts/ModalProvider";
-import {useMemberInfo} from "../../../contexts/MemberInfoProvider";
-import useActorName from "../../../hooks/common/useActorName";
+import { useModal } from '../../../contexts/ModalProvider';
 
-const useActorNameForm = () => {
-    const actorNameInput = useInput(true);
-    const {setActorName} = useLocalStorage();
-    const {closeModal} = useModal();
-    const memberInfo = useMemberInfo();
+const useActorNameForm = (setName: (arg: string) => void) => {
+  const actorNameInput = useInput(true);
+  const { setActorName } = useLocalStorage();
+  const { closeModal } = useModal();
 
+  const { mutate: submitForm, isLoading: isSubmitLoading } = useMutation(() => setActorName(actorNameInput.state!), {
+    onSuccess: () => {
+      setName(actorNameInput.state!);
+      closeModal();
+    },
+  });
 
-
-    const {mutate: submitForm, isLoading: isSubmitLoading} = useMutation(() => setActorName(actorNameInput.state!), {
-        onSuccess: () => {
-            console.log(memberInfo)
-            memberInfo?.updateActorName(actorNameInput.state!)
-            console.log('heelo')
-            closeModal()
-        }
-    });
-
-    const isDisabled = () => {
-        return actorNameInput.state === '';
-    };
-    return {actorNameInput, submitForm, isSubmitLoading, isDisabled};
+  const isDisabled = () => {
+    return actorNameInput.state === '';
+  };
+  return { actorNameInput, submitForm, isSubmitLoading, isDisabled };
 };
 
 export default useActorNameForm;

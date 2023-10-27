@@ -2,37 +2,39 @@ import styled from 'styled-components';
 import Typography from '../../common/Typography/Typography';
 import TimeLineIcon from '../../../assets/icons/TimeLineIcon';
 import color from '../../../styles/color';
-import {useNavigate} from 'react-router-dom';
-import {ROUTES_PATH} from '../../../constants/routes';
-import {useMemberInfo} from '../../../contexts/MemberInfoProvider';
-import useActorName from '../../../hooks/common/useActorName';
-import {useModal} from '../../../contexts/ModalProvider';
+import { useNavigate } from 'react-router-dom';
+import { ROUTES_PATH } from '../../../constants/routes';
+import { useModal } from '../../../contexts/ModalProvider';
 import ActorNameModal from '../ActorNameModal/ActorNameModal';
+import useActorProfile from '../hooks/useActorProfile';
 
 const MemberProfile = () => {
-    const navigate = useNavigate();
-    const memberInfo = useMemberInfo();
-    const actorName = useActorName(memberInfo?.memberInfo?.actorName);
-    const {openModal} = useModal();
+  const navigate = useNavigate();
+  const { openModal } = useModal();
+  const { memberInfo, actorName, handleNamChange } = useActorProfile();
 
-    const handleClickHistoryIcon = () => {
-        navigate(`${ROUTES_PATH.member}`);
-    };
+  if (memberInfo === null) {
+    return null;
+  }
 
-    const handleClickMemberName = () => {
-        openModal(<ActorNameModal actorName={memberInfo!.memberInfo!.actorName}/>);
-    };
+  const handleClickHistoryIcon = () => {
+    navigate(`${ROUTES_PATH.member}`);
+  };
 
-    return (
-        <Layout>
-            <MemberNameWrapper onClick={handleClickMemberName}>
-                <Typography variant="p3">{actorName}</Typography>
-            </MemberNameWrapper>
-            <HistoryWrapper onClick={handleClickHistoryIcon}>
-                <TimeLineIcon color={color.neutral[800]}/>
-            </HistoryWrapper>
-        </Layout>
-    );
+  const handleClickMemberName = () => {
+    openModal(<ActorNameModal actorName={actorName} setName={handleNamChange} />);
+  };
+
+  return (
+    <Layout>
+      <MemberNameWrapper onClick={handleClickMemberName}>
+        <Typography variant="p3">{actorName}</Typography>
+      </MemberNameWrapper>
+      <HistoryWrapper onClick={handleClickHistoryIcon}>
+        <TimeLineIcon color={color.neutral[800]} />
+      </HistoryWrapper>
+    </Layout>
+  );
 };
 
 export default MemberProfile;

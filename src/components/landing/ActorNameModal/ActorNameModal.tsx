@@ -1,16 +1,16 @@
 import styled from 'styled-components';
 import Button from '../../common/Button/Button';
 import { useModal } from '../../../contexts/ModalProvider';
-import color from '../../../styles/color';
 import Input from '../../common/Input/Input';
 import useActorNameForm from '../hooks/useActorNameForm';
 
 type Props = {
   actorName: string | null;
+  setName: (arg: string) => void;
 };
-const ActorNameModal = ({ actorName }: Props) => {
+const ActorNameModal = ({ actorName, setName }: Props) => {
   const { closeModal } = useModal();
-  const { actorNameInput, submitForm } = useActorNameForm();
+  const { actorNameInput, submitForm } = useActorNameForm(setName);
 
   return (
     <Layout>
@@ -22,14 +22,14 @@ const ActorNameModal = ({ actorName }: Props) => {
           onChange={actorNameInput.onChangeInput}
         />
       </Input>
-      {/* TODO 저장 and 닫기 버튼 만들어야 함 */}
-      {/* 저장 후 모달 닫는 함수 호출 */}
-        <CloseButton variant="primary" size="x-small" $block={false} onClick={submitForm}>
-            저장
-        </CloseButton>
-      <CloseButton variant="secondary" size="x-small" $block={false} onClick={closeModal}>
-        닫기
-      </CloseButton>
+      <ButtonWrapper>
+        <Button variant="secondary" size="x-small" $block={false} onClick={closeModal}>
+          닫기
+        </Button>
+        <Button variant="primary" size="x-small" $block={false} onClick={submitForm}>
+          저장
+        </Button>
+      </ButtonWrapper>
     </Layout>
   );
 };
@@ -40,18 +40,9 @@ const Layout = styled.div`
   padding: 5px 10px;
 `;
 
-const CloseButton = styled(Button)`
-  width: fit-content;
-  font-weight: 500;
-
-  float: right;
+const ButtonWrapper = styled.div`
   margin-top: 18px;
-`;
-
-const ParticipantSkeleton = styled.div`
-  width: 60px;
-  height: 30px;
-
-  background-color: ${color.neutral[300]};
-  border-radius: 10px;
+  gap: 10px;
+  display: flex;
+  justify-content: end;
 `;

@@ -1,44 +1,40 @@
-import {createContext, Dispatch, PropsWithChildren, SetStateAction, useContext, useEffect, useState} from 'react';
-import {MemberInfo} from '../types/member';
+import { createContext, PropsWithChildren, useContext, useMemo } from 'react';
+import { MemberInfo } from '../types/member';
 import useFetch from '../hooks/useFetch';
 import useLocalStorage from '../hooks/localStorage/useLocalStorage';
 
-type MemberInfoContextType = {
-    memberInfo: MemberInfo | null;
-    updateActorName: (arg: string) => void;
-}
+type Actions = {
+  refetchMemberInfo: () => void;
+};
 
-const MemberInfoContext = createContext<MemberInfoContextType | null>(null);
+const MemberInfoContext = createContext<MemberInfo | null>(null);
+const MemberInfoActionContext = createContext<Actions | null>(null);
 
-const MemberInfoProvider = ({children}: PropsWithChildren) => {
-    const {getActorInfo} = useLocalStorage();
-    const [memberInfo, setMemberInfo] = useState<MemberInfo | null>(null)
-    const {result, isLoading} = useFetch<MemberInfo>(() => getActorInfo(), {
-        onSuccess: () => {
-            console.log(result)
+const MemberInfoProvider = ({ children }: PropsWithChildren) => {
+  const { getActorInfo } = useLocalStorage();
+  const { result, refetch } = useFetch<MemberInfo>(() => getActorInfo(), {});
 
-        }
-    });
-    useEffect(() => {
-        console.log(result)
-        if (!isLoading) {
-            setMemberInfo(result)
-        }
-    }, [isLoading])
+  const memberInfo = result || null;
 
-    const updateActorName = (name: string) => {
-        console.log(name)
-        setMemberInfo(prev => ({...prev, actorName: name}))
-    }
+  const actions = useMemo(() => ({ refetchMemberInfo: refetch }), [refetch]);
 
-    const value = {
-        memberInfo,
-        updateActorName,
-    }
-
-    return <MemberInfoContext.Provider value={value}>{children}</MemberInfoContext.Provider>;
+  return (
+    <MemberInfoContext.Provider value={memberInfo}>
+      <MemberInfoActionContext.Provider value={actions}>{children}</MemberInfoActionContext.Provider>
+    </MemberInfoContext.Provider>
+  );
 };
 
 export default MemberInfoProvider;
 
 export const useMemberInfo = () => useContext(MemberInfoContext);
+
+export const useMemberInfoAction = () => {
+  const value = useContext(MemberInfoActionContext);
+
+  if (value === null) {
+    throw new Error('MemberInfoAction 에러');
+  }
+
+  return value;
+};
