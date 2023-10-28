@@ -17,6 +17,12 @@
 - React
 - Typescript
 
+# 구현사항
+
+- localStorage를 이용한 사용자 정보 기록
+- custom hook으로 비즈니스 로직 분리
+- Context API로 페이지별, 서비스별 상태 관리
+
 # ✏️ 사용방법
 
 ## STEP 1
@@ -27,7 +33,8 @@
 
 ## STEP 2 & 3
 
-행동하는 동안 메모를 적고 행동이 종료되면 행동을 요약해보세요.
+- 행동하는 동안 메모를 적고 행동이 종료되면 행동을 요약해보세요.
+- 행동 중 브라우저를 종료해도 행동시간이 종료되지 않았다면 계속 이어갈 수 있습니다.
 
 ![step2and3](src/assets/landing_img/step2and3.gif)
 
