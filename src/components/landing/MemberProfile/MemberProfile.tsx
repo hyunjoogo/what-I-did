@@ -11,7 +11,7 @@ import useActorProfile from '../hooks/useActorProfile';
 const MemberProfile = () => {
   const navigate = useNavigate();
   const { openModal } = useModal();
-  const { memberInfo, actorName, handleNamChange } = useActorProfile();
+  const { memberInfo, actorName, handleNameChange } = useActorProfile();
 
   if (memberInfo === null) {
     return null;
@@ -22,7 +22,7 @@ const MemberProfile = () => {
   };
 
   const handleClickMemberName = () => {
-    openModal(<ActorNameModal actorName={actorName} setName={handleNamChange} />);
+    openModal(<ActorNameModal actorName={actorName} handleNameChange={handleNameChange} />);
   };
 
   return (

@@ -6,11 +6,11 @@ import useActorNameForm from '../hooks/useActorNameForm';
 
 type Props = {
   actorName: string | null;
-  setName: (arg: string) => void;
+  handleNameChange: () => void;
 };
-const ActorNameModal = ({ actorName, setName }: Props) => {
+const ActorNameModal = ({ actorName, handleNameChange }: Props) => {
   const { closeModal } = useModal();
-  const { actorNameInput, submitForm } = useActorNameForm(setName);
+  const { actorNameInput, submitForm } = useActorNameForm(handleNameChange);
 
   return (
     <Layout>

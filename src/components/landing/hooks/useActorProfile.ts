@@ -6,11 +6,11 @@ const useActorProfile = () => {
   const actorName = transActorName(memberInfo?.actorName);
   const { refetchMemberInfo: fetchMemberInfo } = useMemberInfoAction();
 
-  const handleNamChange = () => {
+  const handleNameChange = () => {
     fetchMemberInfo();
   };
 
-  return { memberInfo, actorName, handleNamChange };
+  return { memberInfo, actorName, handleNameChange };
 };
 
 export default useActorProfile;
